@@ -42,10 +42,39 @@ button,input{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .mono{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.03em}
-.bar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.bar::before{content:"";position:absolute;inset:0 -50vw;z-index:-1;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+.mark{text-decoration:none;color:var(--ink)}
+.nav{display:flex;align-items:center;gap:22px;font-size:15px}
+.nav a{color:var(--ink);text-decoration:none}
+.nav a:not(.btn):hover{color:var(--accent-deep)}
+.nav .btn{padding:10px 18px;font-size:14px;box-shadow:none}
+.anchor{scroll-margin-top:84px}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px;padding-block:72px;border-top:1px solid var(--line)}
+.about h2,.contact h2{font-size:clamp(34px,4.6vw,56px);line-height:1.02;letter-spacing:-.04em}
+.about h2 em,.contact h2 em{font-style:italic;color:var(--accent)}
+.about .lead{font-size:19px;color:var(--muted);margin:18px 0 0;max-width:40ch}
+.pillars{display:grid;gap:14px}
+.pillar{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);border-radius:20px}
+.pillar i{width:44px;height:44px;border-radius:50%;display:block}
+.pillar h3{font-size:21px;margin:0 0 4px}
+.pillar p{margin:0;color:var(--muted);font-size:15px}
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;padding-block:72px;border-top:1px solid var(--line)}
+.contact .lead{font-size:19px;color:var(--muted);margin:18px 0 22px;max-width:38ch}
+.contact .mail{font-size:20px;font-weight:600;color:var(--accent-deep);text-decoration:none}
+.contact ul{margin:24px 0 0;padding:0;list-style:none;display:grid;gap:10px;color:var(--muted);font-size:15px}
+.contact ul b{color:var(--ink);font-weight:600}
+.cform{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px}
+.cform .field{border-radius:12px;flex:none;width:100%}
+.cform textarea.field{min-height:120px;resize:vertical;font:inherit}
+.cform .ok{margin:0;font-size:15px;color:var(--ink)}
 .mark{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:21px;font-weight:400;letter-spacing:-.04em}
 .mark b{font-weight:700}
 .mark svg{width:26px;height:26px}
+.bar .mark{font-size:28px;gap:12px;letter-spacing:-.045em}
+.bar .mark svg{width:36px;height:36px}
+.bar .mark b{font-weight:800}
 .chapters{display:flex;gap:6px;flex:1;max-width:360px}
 .chapters span{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
 .chapters span i{position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(0);transition:transform .5s var(--ease)}
@@ -67,7 +96,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;l
 .chip-type b{font-family:var(--display);font-style:italic;font-size:18px;color:var(--accent-deep)}
 @keyframes chip{from{opacity:.25;transform:translate(-50%,-30%) scale(.94)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 .intro{position:relative;isolation:isolate}
-.intro::before{content:"";position:absolute;z-index:-1;top:-140px;bottom:-80px;left:-50vw;right:-50vw;background:radial-gradient(42% 58% at 72% 46%,var(--glow) 0%,color-mix(in srgb,var(--glow) 40%,transparent) 40%,transparent 72%),linear-gradient(180deg,var(--bg),var(--warm) 60%,var(--bg))}
+.intro::before{content:"";position:absolute;z-index:-1;top:-140px;bottom:0;left:-50vw;right:-50vw;background:radial-gradient(42% 58% at 72% 46%,var(--glow) 0%,color-mix(in srgb,var(--glow) 40%,transparent) 40%,transparent 72%),linear-gradient(180deg,var(--bg),var(--warm) 60%,var(--bg))}
 .intro h1{font-size:clamp(44px,6.6vw,92px);line-height:.98;font-weight:600;letter-spacing:-.045em}
 .intro h1 em{font-style:italic;color:var(--accent)}
 .lede{font-size:19px;color:var(--muted);max-width:34ch;margin:24px 0 32px}
@@ -85,13 +114,13 @@ h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;l
 .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
 .trust{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;font-size:13px;color:var(--muted)}
 .trust span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle}
-.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:24px 64px}
+.how{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:24px 64px}
 .howstep{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px}
 .howstep h3{font-size:26px;font-weight:600}
 .howstep p{margin:0;color:var(--muted);font-size:15px}
 .hn{font-family:var(--mono);font-size:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent-deep);color:var(--accent-ink)}
 .sitefoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:24px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
-.sitefoot .mark{color:var(--ink)}
+.sitefoot .mark{color:var(--ink);gap:.28em}
 .foot{margin-top:28px;font-size:13px;color:var(--muted);max-width:52ch}
 .portrait{position:relative;aspect-ratio:1;width:100%;max-width:560px;justify-self:center}
 .portrait canvas{width:100%;height:100%;display:block}
@@ -205,7 +234,8 @@ table{border-collapse:collapse;width:100%;font-size:13px}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
 th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--surface)}
 @media (max-width:900px){
-.intro,.quiz,.hero,.cta,.edge{grid-template-columns:minmax(0,1fr)}
+.intro,.quiz,.hero,.cta,.edge,.about,.contact{grid-template-columns:minmax(0,1fr)}
+.about,.contact{gap:28px;padding-block:56px}
 .intro{gap:8px;padding-top:8px}
 .intro .portrait{max-width:440px}
 .herovis{margin-top:24px}
@@ -223,6 +253,10 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 .cta{padding:28px}
 }
 @media (max-width:560px){
+.bar .mark{font-size:22px;gap:9px}
+.bar .mark svg{width:28px;height:28px}
+.nav{gap:14px;font-size:14px}
+.nav .hide-sm{display:none}
 .scale{grid-template-columns:minmax(0,1fr);gap:6px}
 .opt{flex-direction:row;justify-content:flex-start;padding:12px 16px;gap:14px;font-size:15px;text-align:left}
 .opt .dot{flex:none}
@@ -234,12 +268,13 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 }
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
-<div class="wrap">
+<div class="wrap" id="top">
 <header class="bar">
-<div class="mark" aria-label="Spark Traits">
+<a class="mark" href="#top" id="homeLink" aria-label="Spark Traits home">
 <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c1.2 7.6 6.4 12.8 14 14-7.6 1.2-12.8 6.4-14 14-1.2-7.6-6.4-12.8-14-14 7.6-1.2 12.8-6.4 14-14Z" fill="var(--accent)"/><circle cx="26" cy="6" r="2" fill="var(--t-e)"/></svg>
 <span id="brand"><b>Spark</b> Traits</span>
-</div>
+</a>
+<nav class="nav" id="nav" aria-label="Main"><a href="#about" class="hide-sm">About</a><a href="#contact">Contact</a><a class="btn accent" href="#top" id="navStart">Take the test</a></nav>
 <div class="chapters" id="chapters" hidden aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
 </header>
 <!-- INTRO -->
@@ -271,7 +306,44 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <div class="howstep"><span class="hn">2</span><h3>Watch your profile form</h3><p>Your portrait redraws with every answer, so you can see your traits take shape as you go.</p></div>
 <div class="howstep"><span class="hn">3</span><h3>Get your full report</h3><p>Your five traits, what drives you at work, your biggest growth edge and what to do next.</p></div>
 </section>
-<footer class="sitefoot"><span class="mark" style="font-size:18px"><b>Spark</b> Traits</span><span>&copy; 2026 Spark Traits &middot; <a href="/privacy.html">Privacy</a></span></footer>
+<section class="about anchor" id="about" aria-labelledby="aboutTitle">
+<div>
+<p class="mono">About Spark Traits</p>
+<h2 id="aboutTitle">Most tests give you a label. We give you <em>a shape.</em></h2>
+<p class="lead">Spark Traits started with a simple frustration. Most personality tests either put you in a box or charge you to read about yourself alone. We built the one we wanted: free, honest about the science, and useful on Monday morning.</p>
+</div>
+<div class="pillars">
+<div class="pillar"><i style="background:var(--b-o)"></i><div><h3>Built on real science</h3><p>The Big Five is the most researched model of personality. Our statements come from the public-domain IPIP item set, and we tell you exactly what your scores mean and what they don't.</p></div></div>
+<div class="pillar"><i style="background:var(--b-c)"></i><div><h3>Scales, not boxes</h3><p>You get a score from 0 to 100 on each trait, so two "introverts" no longer look the same. Every end of every scale has real strengths.</p></div></div>
+<div class="pillar"><i style="background:var(--b-e)"></i><div><h3>Results you can act on</h3><p>Every report ends with your growth edge, three habits to try this week, and an offer to talk it through with a person.</p></div></div>
+</div>
+</section>
+<section class="contact anchor" id="contact" aria-labelledby="contactTitle">
+<div>
+<p class="mono">Contact</p>
+<h2 id="contactTitle">Let's <em>talk.</em></h2>
+<p class="lead">Questions about your results, a debrief for your team, or a partnership idea. Send a note and a real person will reply.</p>
+<a class="mail" href="mailto:hello@sparktraits.com">hello@sparktraits.com</a>
+<ul>
+<li><b>Free debrief.</b> 30 minutes on your own profile.</li>
+<li><b>Teams.</b> Profiles and a workshop for your whole team.</li>
+<li><b>Everything else.</b> We read every message.</li>
+</ul>
+</div>
+<form class="cform" id="contactForm" novalidate>
+<label class="mono" for="cName">Name</label>
+<input class="field" id="cName" autocomplete="name" required maxlength="80">
+<label class="mono" for="cEmail">Email</label>
+<input class="field" id="cEmail" type="email" autocomplete="email" required maxlength="120">
+<label class="mono" for="cMsg">How can we help?</label>
+<textarea class="field" id="cMsg" required maxlength="2000"></textarea>
+<div style="position:absolute;left:-9999px" aria-hidden="true"><label for="cWebsite">Website</label><input id="cWebsite" tabindex="-1" autocomplete="off"></div>
+<p class="err" id="cErr" role="alert"></p>
+<button class="btn accent" type="submit" id="cBtn">Send message</button>
+<p class="ok" id="cOk" hidden></p>
+</form>
+</section>
+<footer class="sitefoot"><span class="mark" style="font-size:18px"><b>Spark</b> Traits</span><span>&copy; 2026 Spark Traits &middot; <a href="#about">About</a> &middot; <a href="#contact">Contact</a> &middot; <a href="/privacy.html">Privacy</a></span></footer>
 </main>
 <!-- QUIZ -->
 <main id="s-quiz" class="screen" hidden>
@@ -641,6 +713,7 @@ const screens=["intro","quiz","pause","results"];
 function show(name){
 screens.forEach(s=>{$("s-"+s).hidden = s!==name;});
 $("chapters").hidden = !(name==="quiz"||name==="pause");
+$("nav").hidden = (name==="quiz"||name==="pause");
 window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});
 }
 function setChapters(){
@@ -790,6 +863,24 @@ ORDER.forEach(k=>{const b=BANDS[k][band(sc.t[k])]; md+=`### ${TRAITS[k].name}: $
 md+=`## What drives you\n\n`+dr.map((k,i)=>`${i+1}. **${DRIVERS[k].name}.** ${DRIVERS[k].body}`).join("\n")+"\n\n";
 const low=[...ORDER].sort((a,b)=>sc.t[a]-sc.t[b])[0]; md+=`## Your growth edge: ${EDGE[low][0]}\n\n${EDGE[low][1]}\n\n`+EDGE[low][2].map(x=>`- ${x}`).join("\n")+"\n\nsparktraits.com\n";
 const url=URL.createObjectURL(new Blob([md],{type:"text/markdown"})); const a=document.createElement("a"); a.href=url; a.download="Spark-Traits-profile.md"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+function goHome(e){ if(e) e.preventDefault(); if(!$("s-intro").hidden){ window.scrollTo({top:0,behavior:reduce?"auto":"smooth"}); } else show("intro"); setTimeout(()=>$("nameIn").focus({preventScroll:true}),400); }
+$("navStart").addEventListener("click",goHome); $("homeLink").addEventListener("click",goHome);
+document.querySelectorAll('a[href="#about"],a[href="#contact"]').forEach(a=>a.addEventListener("click",e=>{ if($("s-intro").hidden){ e.preventDefault(); show("intro"); setTimeout(()=>document.querySelector(a.getAttribute("href")).scrollIntoView({behavior:reduce?"auto":"smooth"}),60); } }));
+$("contactForm").addEventListener("submit",async e=>{
+e.preventDefault();
+const name=$("cName").value.trim(), email=$("cEmail").value.trim(), msg=$("cMsg").value.trim();
+if(!name){$("cErr").textContent="Add your name so we know who to reply to."; $("cName").focus(); return;}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){$("cErr").textContent="That email doesn't look complete. Check it and try again."; $("cEmail").focus(); return;}
+if(!msg){$("cErr").textContent="Write a short message before sending."; $("cMsg").focus(); return;}
+$("cErr").textContent=""; $("cBtn").disabled=true;
+if($("cWebsite").value){ $("cOk").hidden=false; $("cOk").textContent="Thanks. Your message is on its way."; return; }
+if(HS_PORTAL.startsWith("__")){ location.href=`mailto:hello@sparktraits.com?subject=${encodeURIComponent("Spark Traits: message from "+name)}&body=${encodeURIComponent(msg+"\n\n"+name+" ("+email+")")}`; $("cOk").hidden=false; $("cOk").textContent="Your email app should open with your message ready to send. If it doesn't, write to hello@sparktraits.com."; $("cBtn").disabled=false; return; }
+let ok=false;
+if(!HS_PORTAL.startsWith("__")){ try{ const r=await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:[["firstname",name],["email",email],["message",msg]].map(([n,v])=>({objectTypeId:"0-1",name:n,value:v})),context:{pageUri:location.href,pageName:"Contact"}})}); ok=r.ok; }catch(err){} }
+if(ok){ $("contactForm").querySelectorAll("input,textarea").forEach(x=>x.value=""); $("cOk").hidden=false; $("cOk").textContent=`Thanks, ${name}. We'll reply to ${email} soon.`; }
+else { $("cErr").textContent="Your message didn't send. Email hello@sparktraits.com instead."; }
+$("cBtn").disabled=false;
 });
 if(S.done){ results(); } else show("intro");
 addEventListener("resize",()=>{});
