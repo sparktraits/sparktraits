@@ -134,7 +134,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .resume button{background:none;border:0;padding:0;color:var(--accent-deep);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .quiz{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center;padding-block:24px 56px;min-height:min(78vh,720px)}
 .qside{display:flex;flex-direction:column;align-items:center;gap:14px}
-.qside .portrait{max-width:440px}
+.qside .portrait{max-width:520px;aspect-ratio:4/3}
 .qexplain{margin:0;max-width:34ch;text-align:center;font-size:14px;color:var(--muted)}
 .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px}
 .legend span{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -165,7 +165,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pause{text-align:center;padding-block:12vh;display:flex;flex-direction:column;align-items:center;gap:22px}
 .pause h2{font-size:clamp(34px,5vw,60px);font-weight:600;max-width:16ch}
 .pause p{color:var(--muted);max-width:42ch;margin:0}
-.pause .portrait{max-width:300px}
+.pause .portrait{max-width:560px;aspect-ratio:4/3}
 .steps{list-style:none;padding:0;margin:0;display:grid;gap:8px}
 .steps li{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--muted);opacity:.25;transition:opacity .4s,color .4s}
 .steps li.on{opacity:1;color:var(--ink)}
@@ -246,7 +246,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 .intro .portrait{max-width:440px}
 .herovis{margin-top:24px}
 .quiz{gap:12px;min-height:0;padding-top:4px}
-.qside .portrait{max-width:210px}
+.qside .portrait{max-width:210px;aspect-ratio:1}
 .qexplain{display:none}
 .stage{min-height:120px}
 .hero .portrait{max-width:340px;order:-1}
@@ -259,6 +259,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 .cta{padding:28px}
 }
 @media (max-width:560px){
+.pause .portrait{aspect-ratio:1;max-width:340px}
 .bar .mark{font-size:22px;gap:9px}
 .bar .mark svg{width:28px;height:28px}
 .nav{gap:14px;font-size:14px}
@@ -586,7 +587,7 @@ return ORDER.filter(k=>top.includes(k)).join("");
 function rankDrivers(d){return Object.keys(d).sort((a,b)=>d[b]-d[a]);}
 const portraits=[];
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const TAU=Math.PI*2, RING=1.1;
+const TAU=Math.PI*2, RING=1.1, LBLFONT="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif";
 function rand(seed){let x=Math.sin(seed*9301+49297)*233280;return x-Math.floor(x);}
 function Portrait(canvas,opts){
 opts=opts||{};
@@ -624,11 +625,14 @@ return null;
 function draw(p,dt){
 const c=p.canvas, dpr=Math.min(2,window.devicePixelRatio||1), w=c.clientWidth, h=c.clientHeight;
 if(!w||!h) return;
-if(c.width!==Math.round(w*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}
+{const bw=Math.round(w*dpr), bh=Math.round(h*dpr); if(c.width!==bw||c.height!==bh){c.width=bw;c.height=bh;}}
 const ctx=p.ctx; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
 ORDER.forEach(k=>{ if(p.drag<0||ORDER[p.drag]!==k) p.cur[k]+=(p.target[k]-p.cur[k])*Math.min(1,dt*3.2); });
 if(!reduce) p.t+=dt;
-const R=Math.min(w,h)/2*(p.labels?0.6:(p.hero?(w<480?0.56:0.62):(p.progress?(w<260?0.68:0.47):0.86))), cx=w/2, cy=h/2;
+let R=Math.min(w,h)/2*(p.labels?0.6:(p.hero?(w<480?0.56:0.62):(p.progress?(w<260?0.68:0.47):0.86)));
+const cx=w/2, cy=h/2+(p.progress&&w>=260?8:0);
+if(p.progress&&w>=440){ ctx.font=LBLFONT; const lw=Math.max(...ORDER.map(k=>ctx.measureText(TRAITS[k].name.toUpperCase()).width)); R=Math.max(60,Math.min(h/2-58,w/2-lw-34))/RING; }
+else if(p.progress&&w>=260){ R=Math.min(h/2-56,w/2-56)/RING; }
 const prog=p.progress?p.prog:null;
 ORDER.forEach(k=>{ const on=!prog||prog.per[k]>0; p.vis[k]+=((on?1:0)-p.vis[k])*Math.min(1,dt*4); });
 const mf=prog?0.35:1; p.R=R; p.cx=cx; p.cy=cy;
@@ -681,16 +685,23 @@ const done=prog.n/prog.total, rr=R*RING+9;
 ctx.beginPath(); ctx.arc(cx,cy,rr,0,TAU); ctx.strokeStyle=hexA(ink,.10); ctx.lineWidth=4; ctx.stroke();
 p.shown=(p.shown??done)+(done-(p.shown??done))*Math.min(1,dt*5);
 if(p.shown>0.001){ ctx.beginPath(); ctx.arc(cx,cy,rr,-Math.PI/2,-Math.PI/2+TAU*p.shown); ctx.strokeStyle=accent; ctx.lineWidth=4; ctx.lineCap="round"; ctx.stroke(); ctx.lineCap="butt"; }
-const cr=R*0.19; ctx.beginPath(); ctx.arc(cx,cy,cr,0,TAU); ctx.fillStyle=css("--surface"); ctx.fill(); ctx.strokeStyle=hexA(ink,.12); ctx.lineWidth=1; ctx.stroke();
+const cr=Math.max(R*0.24,w<260?16:26); ctx.beginPath(); ctx.arc(cx,cy,cr,0,TAU); ctx.fillStyle=css("--surface"); ctx.fill(); ctx.strokeStyle=hexA(ink,.12); ctx.lineWidth=1; ctx.stroke();
 ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillStyle=ink;
-ctx.font=`700 ${Math.max(14,cr*0.78)|0}px 'Helvetica Neue', Helvetica, Arial, sans-serif`; ctx.fillText(Math.round(done*100)+"%",cx,cy-(w<260?0:cr*0.12));
-if(w>=260){ ctx.font="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif"; ctx.fillStyle=muted; ctx.fillText("DONE",cx,cy+cr*0.45); }
-p.anchors.forEach((a,i)=>{ const k=ORDER[i], lr=R*RING+(w<260?18:40), lx=cx+Math.cos(a.a)*lr, ly=cy+Math.sin(a.a)*lr;
-ctx.font="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif";
-const nm=w<260?k:TRAITS[k].name.toUpperCase(), half=ctx.measureText(nm).width/2+2, x=Math.max(half,Math.min(w-half,cx+Math.cos(a.a)*(lr+(w<260?0:half*Math.abs(Math.cos(a.a))*0.6))));
-ctx.fillStyle=prog.per[k]?cols[i]:muted; ctx.fillText(nm,x,ly-(w<260?0:5));
-if(w>=260){ const sw=5,g=2,tw=10*sw+9*g; let bx=Math.max(tw/2,Math.min(w-tw/2,x))-tw/2;
-for(let j=0;j<10;j++){ ctx.fillStyle=j<prog.per[k]?cols[i]:hexA(ink,.13); ctx.fillRect(bx+j*(sw+g),ly+5,sw,4); } } });
+ctx.font=`700 ${Math.round(w<260?Math.min(13,cr*0.8):Math.min(cr*0.62,22))}px 'Helvetica Neue', Helvetica, Arial, sans-serif`; ctx.fillText(Math.round(done*100)+"%",cx,cy-(w<260?0:cr*0.2));
+if(w>=260){ ctx.font="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif"; ctx.font=`600 ${Math.round(Math.min(10,cr*0.3))}px 'Helvetica Neue', Helvetica, Arial, sans-serif`; ctx.fillStyle=muted; ctx.fillText("DONE",cx,cy+cr*0.42); }
+p.anchors.forEach((a,i)=>{ const k=ORDER[i], cs=Math.cos(a.a), sn=Math.sin(a.a);
+if(w<260){ const lr=R*RING+18; ctx.font=LBLFONT; ctx.textAlign="center"; ctx.fillStyle=prog.per[k]?cols[i]:muted; ctx.fillText(k,cx+cs*lr,cy+sn*lr); return; }
+if(w<440){ const lr=R*RING+30, ax=cx+cs*lr, ay=cy+sn*lr; ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.font="700 13px 'Helvetica Neue', Helvetica, Arial, sans-serif"; ctx.fillStyle=prog.per[k]?cols[i]:muted; ctx.fillText(k,ax,ay-6);
+const bw=10*4+9*1.5, bx=Math.max(2,Math.min(w-bw-2,ax-bw/2)); for(let j=0;j<10;j++){ ctx.fillStyle=j<prog.per[k]?cols[i]:hexA(ink,.13); ctx.fillRect(bx+j*5.5,ay+5,4,4); } return; }
+const lr=R*RING+20, side=Math.abs(cs)>0.5?Math.sign(cs):0;
+const ax=cx+cs*lr, ay=cy+sn*lr+(sn<-0.9?-14:(sn>0.5?10:0));
+ctx.font=LBLFONT; ctx.textAlign=side>0?"left":(side<0?"right":"center"); ctx.textBaseline="middle";
+const nm=TRAITS[k].name.toUpperCase(), tw=ctx.measureText(nm).width, bw=10*5+9*2;
+const x=side>0?Math.min(ax,w-tw-2):(side<0?Math.max(ax,tw+2):ax);
+ctx.fillStyle=prog.per[k]?cols[i]:muted; ctx.fillText(nm,x,ay-5);
+const bx=side>0?x:(side<0?x-bw:x-bw/2);
+for(let j=0;j<10;j++){ ctx.fillStyle=j<prog.per[k]?cols[i]:hexA(ink,.13); ctx.fillRect(bx+j*7,ay+5,5,4); } });
+ctx.textAlign="center";
 }
 if(p.onFrame) p.onFrame();
 }
