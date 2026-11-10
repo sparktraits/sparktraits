@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spark Traits | Free Personality and Work Profile</title>
+<meta name="description" content="A free 12-minute personality and work profile built on the Big Five. See your five traits, what drives you at work, and your biggest growth edge.">
+<link rel="canonical" href="https://sparktraits.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#FFF8F1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Spark Traits">
+<meta property="og:title" content="Spark Traits: find the traits that spark your best work">
+<meta property="og:description" content="A free 12-minute personality and work profile built on the Big Five.">
+<meta property="og:url" content="https://sparktraits.com/">
+<meta property="og:image" content="https://sparktraits.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0}a{color:inherit}</style>
+</head>
+<body>
+<style>
+:root{
+--bg:#FFF8F1; --surface:#FFFFFF; --ink:#1E130E; --muted:#7A6457; --line:#EEDCCC; --line-strong:#9E8573; --accent:#E04E14; --accent-ink:#FFFFFF;
+--glow:#FFD3B2; --warm:#FCE9DA;
+--t-o:#8A4A9E; --t-c:#2E6B86; --t-e:#946300; --t-a:#B23A5E; --t-s:#3F7A46; --accent-deep:#C2410C;
+--b-o:#B07CE0; --b-c:#4FA3D1; --b-e:#F2B233; --b-a:#F06A93; --b-s:#5CC28A;
+color-scheme:light;
+--display:"Helvetica Neue", Helvetica, Arial, sans-serif;
+--body:"Helvetica Neue", Helvetica, Arial, sans-serif;
+--mono:"Helvetica Neue", Helvetica, Arial, sans-serif;
+--ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0;letter-spacing:-.03em}
+.bar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.mark{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:21px;font-weight:400;letter-spacing:-.04em}
+.mark b{font-weight:700}
+.mark svg{width:26px;height:26px}
+.chapters{display:flex;gap:6px;flex:1;max-width:360px}
+.chapters span{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden;position:relative}
+.chapters span i{position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(0);transition:transform .5s var(--ease)}
+.screen{animation:rise .7s var(--ease) both}
+@keyframes rise{from{opacity:.0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:40px;align-items:center;padding-block:24px 64px}
+.heroart{max-width:660px}
+.chips{position:absolute;inset:0;pointer-events:none}
+.chip{position:absolute;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 12px 7px 10px;font-size:13px;font-weight:500;white-space:nowrap;box-shadow:0 10px 30px -14px color-mix(in srgb,var(--ink) 45%,transparent);transform:translate(-50%,-50%)}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip b{font-family:var(--mono);font-weight:500;color:var(--c);font-variant-numeric:tabular-nums}
+.chip{transition:none}
+.heroart canvas{touch-action:none}
+.hint{margin:0;text-align:center;font-size:13px;color:var(--muted)}
+.herovis{display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+.herometa{display:flex;flex-direction:column;align-items:center;gap:10px}
+.chip-type{display:flex;flex-direction:column;align-items:center;padding:8px 20px;border:1px solid var(--ink);border-radius:999px;background:var(--surface)}
+.chip-type small{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.chip-type b{font-family:var(--display);font-style:italic;font-size:18px;color:var(--accent-deep)}
+@keyframes chip{from{opacity:.25;transform:translate(-50%,-30%) scale(.94)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.intro{position:relative;isolation:isolate}
+.intro::before{content:"";position:absolute;z-index:-1;top:-140px;bottom:-80px;left:-50vw;right:-50vw;background:radial-gradient(42% 58% at 72% 46%,var(--glow) 0%,color-mix(in srgb,var(--glow) 40%,transparent) 40%,transparent 72%),linear-gradient(180deg,var(--bg),var(--warm) 60%,var(--bg))}
+.intro h1{font-size:clamp(44px,6.6vw,92px);line-height:.98;font-weight:600;letter-spacing:-.045em}
+.intro h1 em{font-style:italic;color:var(--accent)}
+.lede{font-size:19px;color:var(--muted);max-width:34ch;margin:24px 0 32px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 32px;padding:0;list-style:none}
+.facts li{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;display:flex;gap:8px;align-items:center}
+.facts li b{font-weight:500;color:var(--ink)}
+.facts li span{color:var(--muted)}
+.start{display:flex;gap:10px;flex-wrap:wrap;max-width:460px}
+.field{flex:1 1 220px;min-width:0;background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;padding:14px 22px;font-size:17px}
+.field::placeholder{color:var(--muted)}
+.btn{appearance:none;border:0;background:var(--ink);color:var(--bg);border-radius:999px;padding:14px 26px;font-weight:600;font-size:16px;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.accent{background:var(--accent-deep);color:var(--accent-ink);box-shadow:0 12px 28px -12px var(--accent-deep)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.trust{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 0;font-size:13px;color:var(--muted)}
+.trust span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:middle}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-block:24px 64px}
+.howstep{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px}
+.howstep h3{font-size:26px;font-weight:600}
+.howstep p{margin:0;color:var(--muted);font-size:15px}
+.hn{font-family:var(--mono);font-size:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent-deep);color:var(--accent-ink)}
+.sitefoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:24px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.sitefoot .mark{color:var(--ink)}
+.foot{margin-top:28px;font-size:13px;color:var(--muted);max-width:52ch}
+.portrait{position:relative;aspect-ratio:1;width:100%;max-width:560px;justify-self:center}
+.portrait canvas{width:100%;height:100%;display:block}
+.resume{margin-top:14px;font-size:14px;color:var(--muted)}
+.resume button{background:none;border:0;padding:0;color:var(--accent-deep);font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.quiz{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center;padding-block:24px 56px;min-height:min(78vh,720px)}
+.qside{display:flex;flex-direction:column;align-items:center;gap:14px}
+.qside .portrait{max-width:440px}
+.qexplain{margin:0;max-width:34ch;text-align:center;font-size:14px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px}
+.legend span{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.legend i{width:8px;height:8px;border-radius:50%}
+.qmain{min-width:0}
+.qmeta{display:flex;justify-content:space-between;gap:12px;margin-bottom:28px}
+.stage{position:relative;min-height:190px}
+.statement{font-family:var(--display);font-size:clamp(30px,4vw,54px);line-height:1.08;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
+.statement.out{animation:out .2s var(--ease) forwards}
+.statement.in{animation:in .55s var(--ease) both}
+@keyframes out{to{opacity:0;transform:translateY(-22px);filter:blur(4px)}}
+@keyframes in{from{opacity:0;transform:translateY(26px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.ask{margin:26px 0 16px;color:var(--muted);font-size:15px}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.opt{appearance:none;cursor:pointer;background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;padding:14px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;font-size:13px;line-height:1.25;color:var(--ink);transition:border-color .2s,transform .2s var(--ease),background .2s}
+.opt:hover{border-color:var(--ink);transform:translateY(-2px)}
+.opt .dot{border-radius:50%;border:1.5px solid var(--ink);transition:background .2s,transform .3s var(--ease)}
+.opt[data-v="1"] .dot,.opt[data-v="5"] .dot{width:22px;height:22px}
+.opt[data-v="2"] .dot,.opt[data-v="4"] .dot{width:16px;height:16px}
+.opt[data-v="3"] .dot{width:11px;height:11px}
+.opt kbd{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.opt.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--surface))}
+.opt.sel .dot{background:var(--accent);border-color:var(--accent);transform:scale(1.15)}
+.qnav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px}
+.link{background:none;border:0;padding:6px 0;color:var(--muted);cursor:pointer;font-size:14px}
+.link:hover{color:var(--ink)}
+.link[disabled]{opacity:.35;cursor:default}
+.pause{text-align:center;padding-block:12vh;display:flex;flex-direction:column;align-items:center;gap:22px}
+.pause h2{font-size:clamp(34px,5vw,60px);font-weight:600;max-width:16ch}
+.pause p{color:var(--muted);max-width:42ch;margin:0}
+.pause .portrait{max-width:300px}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.steps li{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--muted);opacity:.25;transition:opacity .4s,color .4s}
+.steps li.on{opacity:1;color:var(--ink)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:28px 56px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(46px,7vw,96px);line-height:.96;font-weight:600}
+.hero h1 em{font-style:italic;color:var(--accent);display:block}
+.hero p{font-size:19px;max-width:40ch;color:var(--muted)}
+.code{font-family:var(--mono);font-size:14px;letter-spacing:.08em;display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:22px}
+.code span b{font-weight:500}
+section.block{padding-block:56px;border-bottom:1px solid var(--line)}
+.bh{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.bh h2{font-size:clamp(30px,4vw,46px);font-weight:600}
+.traits{display:grid;gap:22px}
+.trait{display:grid;grid-template-columns:200px minmax(0,1fr) 56px;gap:20px;align-items:center}
+.trait .nm{font-family:var(--display);font-size:24px}
+.trait .nm small{display:block;font-family:var(--body);font-size:13px;color:var(--muted)}
+.track{position:relative;height:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
+.track i{position:absolute;left:0;top:-1px;bottom:-1px;border-radius:999px;width:0;transition:width 1.2s var(--ease)}
+.track .ends{position:absolute;top:16px;left:0;right:0;display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.trait .val{font-family:var(--mono);font-size:20px;text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--muted);margin-top:40px;max-width:70ch}
+.locked{position:relative;display:grid}
+.locked>*{grid-area:1/1}
+.ghosts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;filter:blur(5px);opacity:.55;pointer-events:none;user-select:none}
+.ghost{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;min-height:180px}
+.ghost h3{font-size:22px;margin-bottom:10px}
+.ghost p{margin:0;color:var(--muted);font-size:14px}
+.gate{position:relative;display:flex;align-items:center;justify-content:center;padding:16px}
+.gatecard{background:var(--bg);border:1px solid var(--ink);border-radius:22px;padding:32px;width:100%;max-width:520px;box-shadow:0 30px 80px -30px color-mix(in srgb,var(--ink) 40%,transparent)}
+.gatecard h3{font-size:32px;font-weight:600;margin-bottom:8px}
+.gatecard p{color:var(--muted);margin:0 0 20px;font-size:15px}
+.gform{display:grid;gap:10px}
+.gform .field{border-radius:12px;flex:none;width:100%}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:6px 0 4px;cursor:pointer}
+.check input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px}
+.fine{font-size:12px;color:var(--muted);margin:4px 0 0}
+.err{color:var(--accent-deep);font-size:13px;min-height:1em;margin:0}
+.deep{display:grid;gap:0}
+.dive{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;padding-block:32px;border-top:1px solid var(--line)}
+.dive:first-child{border-top:0;padding-top:0}
+.dive .lbl{display:flex;flex-direction:column;gap:6px}
+.dive .lbl .score{font-family:var(--mono);font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+.dive .lbl .band{font-family:var(--display);font-style:italic;font-size:22px}
+.dive .txt{max-width:66ch;display:grid;gap:16px}
+.dive .txt p{margin:0}
+.dive h4{margin:0 0 4px;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.drivers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.drv{border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--surface);display:flex;flex-direction:column;gap:10px;min-width:0}
+.drv.top{border-color:var(--ink)}
+.drv .n{font-family:var(--display);font-size:22px}
+.drv .meter{display:flex;gap:3px}
+.drv .meter i{flex:1;height:6px;border-radius:2px;background:var(--line)}
+.drv .meter i.f{background:var(--ink)}
+.drv p{margin:0;font-size:14px;color:var(--muted)}
+.drv .tag{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep)}
+.edge{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.edge ol{margin:0;padding-left:22px;display:grid;gap:12px;font-size:17px}
+.cta{background:var(--ink);color:var(--bg);border-radius:28px;padding:48px;margin-block:56px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
+.cta h2{font-size:clamp(34px,4.6vw,56px);font-weight:600;line-height:1.02}
+.cta h2 em{color:var(--accent)}
+.cta ul{margin:0;padding:0;list-style:none;display:grid;gap:12px;font-size:16px}
+.cta li{display:flex;gap:12px}
+.cta li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:9px}
+.cta .btn{background:var(--bg);color:var(--ink);margin-top:24px}
+.cta .ok{margin-top:18px;font-size:15px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start;padding-block:0 56px}
+.ownerbtn{font-size:13px;padding:8px 16px}
+.panel{position:fixed;inset:0;z-index:30;background:color-mix(in srgb,var(--ink) 40%,transparent);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.panel .in{background:var(--bg);border-radius:20px;padding:24px;width:100%;max-width:980px;max-height:80vh;display:flex;flex-direction:column;gap:16px}
+.panel .tbl{overflow:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--surface)}
+@media (max-width:900px){
+.intro,.quiz,.hero,.cta,.edge{grid-template-columns:minmax(0,1fr)}
+.intro{gap:8px;padding-top:8px}
+.intro .portrait{max-width:440px}
+.herovis{margin-top:24px}
+.quiz{gap:12px;min-height:0;padding-top:4px}
+.qside .portrait{max-width:210px}
+.qexplain{display:none}
+.stage{min-height:120px}
+.hero .portrait{max-width:340px;order:-1}
+.ghosts{grid-template-columns:minmax(0,1fr)}
+.how{grid-template-columns:minmax(0,1fr)}
+.drivers{grid-template-columns:repeat(2,minmax(0,1fr))}
+.dive{grid-template-columns:minmax(0,1fr);gap:16px}
+.trait{grid-template-columns:minmax(0,1fr) 48px;gap:8px 14px}
+.trait .track{grid-column:1 / -1;grid-row:2;margin-bottom:18px}
+.cta{padding:28px}
+}
+@media (max-width:560px){
+.scale{grid-template-columns:minmax(0,1fr);gap:6px}
+.opt{flex-direction:row;justify-content:flex-start;padding:12px 16px;gap:14px;font-size:15px;text-align:left}
+.opt .dot{flex:none}
+.opt kbd{margin-left:auto}
+.drivers{grid-template-columns:minmax(0,1fr)}
+.gatecard{padding:22px}
+.chapters{max-width:140px}
+.chip{font-size:11px;padding:5px 9px 5px 8px;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+<div class="wrap">
+<header class="bar">
+<div class="mark" aria-label="Spark Traits">
+<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c1.2 7.6 6.4 12.8 14 14-7.6 1.2-12.8 6.4-14 14-1.2-7.6-6.4-12.8-14-14 7.6-1.2 12.8-6.4 14-14Z" fill="var(--accent)"/><circle cx="26" cy="6" r="2" fill="var(--t-e)"/></svg>
+<span id="brand"><b>Spark</b> Traits</span>
+</div>
+<div class="chapters" id="chapters" hidden aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+</header>
+<!-- INTRO -->
+<main id="s-intro" class="screen">
+<div class="intro">
+<div>
+<p class="mono">Free personality &amp; work profile</p>
+<h1>Find the traits that <em>spark</em> your best work.</h1>
+<p class="lede">Sixty short statements. Answer with your first instinct, and you'll get a personal profile of your traits, what drives you, and where you can grow.</p>
+<ul class="facts">
+<li><b>60</b><span>statements</span></li>
+<li><b>12</b><span>minutes</span></li>
+<li><b>5</b><span>core traits</span></li>
+<li><b>5</b><span>work drivers</span></li>
+</ul>
+<form class="start" id="startForm">
+<label for="nameIn" class="mono" style="position:absolute;left:-9999px">Your first name</label>
+<input class="field" id="nameIn" autocomplete="given-name" placeholder="Your first name" maxlength="40">
+<button class="btn accent" type="submit">Begin</button>
+</form>
+<p class="resume" id="resume" hidden>You have a test in progress. <button type="button" id="resumeBtn">Pick up where you left off</button></p>
+<p class="trust"><span>No account needed</span><span>Free snapshot in 12 minutes</span><span>Private by default</span></p>
+<p class="foot">Built on the public-domain IPIP Big-Five Factor Markers (Goldberg, 1992), the most widely researched framework for personality, plus a short work-drivers scale of our own.</p>
+</div>
+<div class="herovis"><div class="portrait heroart"><canvas id="cIntro" aria-label="Interactive sample personality profile"></canvas><div class="chips" id="chips" aria-hidden="true"></div></div><div class="herometa"><span class="chip-type"><small id="chipLbl">Sample profile</small><b id="chipType"></b></span><p class="hint" id="heroHint">Drag a colored dot to reshape it. Tap anywhere for a ripple.</p></div></div>
+</div>
+<section class="how" aria-label="How it works">
+<div class="howstep"><span class="hn">1</span><h3>Answer 60 statements</h3><p>Rate how well each one describes you. Go with your first instinct; there are no right answers.</p></div>
+<div class="howstep"><span class="hn">2</span><h3>Watch your profile form</h3><p>Your portrait redraws with every answer, so you can see your traits take shape as you go.</p></div>
+<div class="howstep"><span class="hn">3</span><h3>Get your full report</h3><p>Your five traits, what drives you at work, your biggest growth edge and what to do next.</p></div>
+</section>
+<footer class="sitefoot"><span class="mark" style="font-size:18px"><b>Spark</b> Traits</span><span>&copy; 2026 Spark Traits &middot; <a href="/privacy.html">Privacy</a></span></footer>
+</main>
+<!-- QUIZ -->
+<main id="s-quiz" class="screen" hidden>
+<div class="quiz">
+<div class="qside">
+<div class="portrait"><canvas id="cQuiz"></canvas></div>
+<p class="qexplain">The ring shows how far along you are. Each trait has ten statements, and its bar fills as you answer them. The shape is your profile so far.</p><p class="qexplain mono" id="drvProg">Work drivers: 0 of 10 answered</p>
+</div>
+<div class="qmain">
+<div class="qmeta"><span class="mono" id="qCount">Statement 1 of 60</span><span class="mono" id="qChapter">Part 1 of 4</span></div>
+<div class="stage" aria-live="polite"><p class="statement" id="qText"></p></div>
+<p class="ask">How accurately does this describe you?</p>
+<div class="scale" id="scale" role="radiogroup" aria-label="How accurately does this describe you?"></div>
+<div class="qnav">
+<button class="link" id="backBtn" type="button">&larr; Previous</button>
+<span class="mono" id="qLeft">About 12 min left</span>
+</div>
+</div>
+</div>
+</main>
+<!-- PAUSE -->
+<main id="s-pause" class="screen" hidden>
+<div class="pause">
+<div class="portrait"><canvas id="cPause"></canvas></div>
+<p class="mono" id="pEyebrow"></p>
+<h2 id="pTitle"></h2>
+<p id="pBody"></p>
+<button class="btn" id="pBtn" type="button">Keep going</button>
+<ul class="steps" id="steps" hidden>
+<li>Scoring 60 responses</li><li>Mapping five traits</li><li>Ranking your work drivers</li><li>Writing your profile</li>
+</ul>
+</div>
+</main>
+<!-- RESULTS -->
+<main id="s-results" class="screen" hidden>
+<div class="hero">
+<div>
+<p class="mono" id="rEyebrow">Your profile</p>
+<h1 id="rTitle"></h1>
+<p id="rSummary"></p>
+<div class="code" id="rCode" aria-label="Profile code"></div>
+</div>
+<div class="portrait"><canvas id="cResult"></canvas></div>
+</div>
+<section class="block">
+<div class="bh"><h2>Your five traits</h2><span class="mono">Scale 0 to 100</span></div>
+<div class="traits" id="rTraits"></div>
+<p class="note">Scores show where you landed on each scale based on your own answers, from 0 (lowest possible) to 100 (highest possible). They are not percentiles against other people. No score is good or bad; each end of every scale has real strengths.</p>
+</section>
+<section class="block" id="lockedBlock">
+<div class="bh"><h2>Your full report</h2><span class="mono">Free with your email</span></div>
+<div class="locked">
+<div class="ghosts" aria-hidden="true" id="ghosts"></div>
+<div class="gate">
+<div class="gatecard">
+<h3 id="gTitle">There's a lot more here.</h3>
+<p>Unlock a trait-by-trait breakdown, your top work drivers, your biggest growth edge and three practical next steps.</p>
+<form class="gform" id="gateForm" novalidate>
+<label class="mono" for="gName">First name</label>
+<input class="field" id="gName" autocomplete="given-name" required maxlength="40">
+<label class="mono" for="gEmail">Work email</label>
+<input class="field" id="gEmail" type="email" autocomplete="email" required maxlength="120">
+<label class="mono" for="gRole">Role <span style="text-transform:none;letter-spacing:0">(optional)</span></label>
+<input class="field" id="gRole" autocomplete="organization-title" maxlength="80">
+<label class="check"><input type="checkbox" id="gConsult"> I'd like a free 30-minute debrief of my results.</label>
+<div style="position:absolute;left:-9999px" aria-hidden="true"><label for="gWebsite">Website</label><input id="gWebsite" tabindex="-1" autocomplete="off"></div>
+<p class="err" id="gErr" role="alert"></p>
+<button class="btn accent" type="submit">Unlock my full report</button>
+<p class="fine">We'll use your email to follow up about your results. No spam, and you can opt out at any time. <a href="/privacy.html">Privacy</a></p>
+</form>
+</div>
+</div>
+</div>
+</section>
+<div id="full" hidden>
+<section class="block">
+<div class="bh"><h2>Trait by trait</h2><span class="mono">What each score means for you</span></div>
+<div class="deep" id="rDeep"></div>
+</section>
+<section class="block">
+<div class="bh"><h2>What drives you</h2><span class="mono">Ranked from your answers</span></div>
+<div class="drivers" id="rDrivers"></div>
+</section>
+<section class="block">
+<div class="bh"><h2>Your growth edge</h2><span class="mono" id="rEdgeTag"></span></div>
+<div class="edge">
+<div><h3 id="rEdgeTitle" style="font-size:30px;margin-bottom:12px"></h3><p id="rEdgeBody" style="color:var(--muted);margin:0;max-width:46ch"></p></div>
+<ol id="rEdgeSteps"></ol>
+</div>
+</section>
+<div class="cta">
+<div>
+<p class="mono" style="color:inherit;opacity:.7">One-on-one debrief</p>
+<h2>A report tells you who you are. <em>A conversation</em> shows you what to do with it.</h2>
+</div>
+<div>
+<ul>
+<li>Walk through your profile with a coach in 30 minutes</li>
+<li>Map your traits to your current role and team</li>
+<li>Leave with a plan for the next 90 days</li>
+</ul>
+<button class="btn" id="consultBtn" type="button">Request my free debrief</button>
+<p class="ok" id="consultOk" hidden></p>
+</div>
+</div>
+<div class="tools">
+<button class="btn ghost" id="saveReport" type="button" hidden>Save my report</button>
+<button class="btn ghost" id="retake" type="button">Retake the assessment</button>
+</div>
+</div>
+</main>
+</div>
+<script>
+(() => {
+const BRAND = "Spark Traits";
+let isOwner=false;
+const TRAITS = {
+O:{name:"Openness", sub:"Ideas and imagination", lo:"Grounded", hi:"Idea-driven", c:"--t-o"},
+C:{name:"Conscientiousness", sub:"Order and follow-through", lo:"Spontaneous", hi:"Disciplined", c:"--t-c"},
+E:{name:"Extraversion", sub:"Social energy", lo:"Reserved", hi:"Outgoing", c:"--t-e"},
+A:{name:"Agreeableness", sub:"Warmth and cooperation", lo:"Direct", hi:"Warm", c:"--t-a"},
+S:{name:"Steadiness", sub:"Emotional stability", lo:"Sensitive", hi:"Even-keeled", c:"--t-s"}
+};
+const ORDER = ["O","C","E","A","S"];
+const IPIP = [
+["E",1,"Am the life of the party"],["A",-1,"Feel little concern for others"],["C",1,"Am always prepared"],["S",-1,"Get stressed out easily"],["O",1,"Have a rich vocabulary"],
+["E",-1,"Don't talk a lot"],["A",1,"Am interested in people"],["C",-1,"Leave my belongings around"],["S",1,"Am relaxed most of the time"],["O",-1,"Have difficulty understanding abstract ideas"],
+["E",1,"Feel comfortable around people"],["A",-1,"Insult people"],["C",1,"Pay attention to details"],["S",-1,"Worry about things"],["O",1,"Have a vivid imagination"],
+["E",-1,"Keep in the background"],["A",1,"Sympathize with others' feelings"],["C",-1,"Make a mess of things"],["S",1,"Seldom feel blue"],["O",-1,"Am not interested in abstract ideas"],
+["E",1,"Start conversations"],["A",-1,"Am not interested in other people's problems"],["C",1,"Get chores done right away"],["S",-1,"Am easily disturbed"],["O",1,"Have excellent ideas"],
+["E",-1,"Have little to say"],["A",1,"Have a soft heart"],["C",-1,"Often forget to put things back in their proper place"],["S",-1,"Get upset easily"],["O",-1,"Do not have a good imagination"],
+["E",1,"Talk to a lot of different people at parties"],["A",-1,"Am not really interested in others"],["C",1,"Like order"],["S",-1,"Change my mood a lot"],["O",1,"Am quick to understand things"],
+["E",-1,"Don't like to draw attention to myself"],["A",1,"Take time out for others"],["C",-1,"Shirk my duties"],["S",-1,"Have frequent mood swings"],["O",1,"Use difficult words"],
+["E",1,"Don't mind being the center of attention"],["A",1,"Feel others' emotions"],["C",1,"Follow a schedule"],["S",-1,"Get irritated easily"],["O",1,"Spend time reflecting on things"],
+["E",-1,"Am quiet around strangers"],["A",1,"Make people feel at ease"],["C",1,"Am exacting in my work"],["S",-1,"Often feel blue"],["O",1,"Am full of ideas"]
+];
+const DRIVERS = {
+ideas:{name:"Novelty", body:"You come alive when the problem is new and the answer isn't obvious yet."},
+people:{name:"Connection", body:"Your energy comes from conversation, collaboration and helping someone else win."},
+precision:{name:"Craft", body:"You care about getting it right. Quality work is its own reward."},
+momentum:{name:"Progress", body:"You need to see things move. Shipping and finishing keep you going."},
+autonomy:{name:"Ownership", body:"You do your best work when you control the how."}
+};
+const DRV_ITEMS = [
+["ideas","I get energy from working on a problem nobody has solved yet."],
+["people","My best days at work involve a lot of conversation."],
+["precision","I enjoy getting the details exactly right, even when nobody will notice."],
+["momentum","I'd rather ship something good today than something perfect next month."],
+["autonomy","I work best when I'm left alone to figure out how."],
+["ideas","I'd rather design something new than improve something that already works."],
+["people","I do my best work when I'm helping someone else succeed."],
+["precision","I'm usually the one who catches the error everyone else missed."],
+["momentum","Finishing a project gives me more satisfaction than starting one."],
+["autonomy","I get restless when someone else sets every step of the process."]
+];
+const ITEMS = [];
+IPIP.forEach((it,i)=>{
+ITEMS.push({kind:"t", t:it[0], k:it[1], text:"I "+it[2].charAt(0).toLowerCase()+it[2].slice(1)+"."});
+if(i%5===4){const d=DRV_ITEMS[(i-4)/5]; ITEMS.push({kind:"d", d:d[0], text:d[1]});}
+});
+const LABELS = ["Very inaccurate","Moderately inaccurate","Neither","Moderately accurate","Very accurate"];
+const BANDS = {
+O:{
+hi:["Idea-driven","You think in possibilities. New concepts, abstract problems and unusual connections hold your attention longer than routine does. People come to you when they need a fresh angle.","You do your best work early in a project, when the problem is still open. Give yourself room to explore before anyone asks for a plan.","Not every idea needs to be pursued. Your pace of new thinking can leave others behind, and some good ideas get dropped because the next one showed up first."],
+mid:["Practical imagination","You like new ideas when they have a use. You can work in the abstract, but you want to see where it lands before you commit.","You translate between the dreamers and the doers on a team. That's a rarer skill than it sounds.","You may hold back an original idea because it isn't fully formed yet. Share it earlier than feels comfortable."],
+lo:["Grounded","You trust what has been tested. You prefer clear facts, familiar methods and concrete problems over speculation.","You keep projects realistic. When a team gets carried away, you're the one who asks what it will actually take.","You can dismiss a new approach before it gets a fair hearing. Ask one more question before you say no."]},
+C:{
+hi:["Disciplined","You plan, you prepare and you follow through. Order helps you think, and people rarely have to remind you of a commitment.","You're the person a team relies on to land the plane. Deadlines, details and standards are where you shine.","High standards can turn into rework and late nights. Decide in advance what done looks like so you know when to stop."],
+mid:["Flexible structure","You're organized when it matters and relaxed when it doesn't. You can follow a plan, and you can drop it when the situation changes.","You adapt well to shifting priorities without losing track of what's important.","Under a heavy load, small things slip. A simple system for capturing tasks will cover the gaps."],
+lo:["Spontaneous","You'd rather respond to the moment than script it. Rules and schedules feel confining, and you work in bursts when something grabs you.","You're quick to start and comfortable improvising. Pair up with someone who loves the follow-through.","Loose ends add up and can cost trust. Pick the two or three commitments that matter most and protect those."]},
+E:{
+hi:["Outgoing","People give you energy. You speak up, start conversations and like being where the action is.","You move ideas forward by talking about them. Rooms tend to warm up when you walk in.","Quieter people may not get a word in. Leave space, and ask the person who hasn't spoken yet."],
+mid:["Ambivert","You can work a room and you can work alone. Your energy depends on the setting more than on a fixed preference.","You read a situation and adjust. You're comfortable presenting, and you're comfortable with heads-down work.","Because you can do both, people may assume you need neither. Protect the recovery time you need."],
+lo:["Reserved","You think before you speak and prefer depth over volume. Big groups take energy, and one-on-one conversations give it back.","You listen well and notice what others miss. Your written thinking is often your strongest.","Your best ideas may stay in your head. Find a format, like a short written note before a meeting, that gets them on the table."]},
+A:{
+hi:["Warm","You notice how people feel and you care about it. You make others comfortable, and you'd rather cooperate than compete.","Teams trust you. You build the relationships that make hard projects possible.","You may say yes when you mean no, or soften feedback until it loses its point. Kind and clear can go together."],
+mid:["Fair-minded","You care about people and you can also hold a line. You're cooperative by default, and you'll push back when it matters.","You can deliver a hard message without burning the relationship. That makes you useful in negotiations and reviews.","People may not always know which version of you they'll get. Say out loud when you're switching from support to challenge."],
+lo:["Direct","You say what you think. You're more interested in the right answer than in keeping everyone comfortable.","You make tough calls and give honest feedback. Teams that need a reality check are lucky to have you.","Being right isn't always enough to win people over. A little context about why you care goes a long way."]},
+S:{
+hi:["Even-keeled","Stress rolls off you more than most. Your mood stays steady and you rarely take setbacks personally.","You're calm in a crisis, and that calm spreads. People look to you when things go sideways.","Others may read your calm as not caring. Tell people when something matters to you."],
+mid:["Responsive","You feel pressure, and you usually recover from it. Some days get to you; most don't.","You take risks seriously without being frozen by them.","Notice your early signs of overload, like a short temper or poor sleep, and act on them before they stack up."],
+lo:["Sensitive","You feel things strongly. You notice risk early and care a lot about getting things right, which can make stress hit harder.","Your alertness to what could go wrong is valuable in planning. You often see problems before anyone else does.","Worry can drain energy you need for the work itself. Separate what you can control from what you can't, and write both down."]}
+};
+const ARCH = {
+OC:["Architect","You pair big ideas with the discipline to build them. Most people are strong at one or the other. You can see what should exist and lay out the steps to get there."],
+OE:["Catalyst","You get excited about ideas, and you get other people excited too. You're at your best starting things, pitching things and pulling people in a new direction."],
+OA:["Counselor","You're as curious about people as you are about ideas. You listen for what's underneath a problem and look for answers that work for everyone involved."],
+OS:["Explorer","You're drawn to the unknown and you stay calm in it. Uncertainty that rattles other people looks to you like an interesting problem."],
+CE:["Captain","You set direction and get people moving. You like a clear goal, a solid plan and a team pulling the same way."],
+CA:["Steward","You're dependable, and you care about the people depending on you. You hold things together quietly, and teams run better with you on them."],
+CS:["Anchor","You're steady and reliable. Pressure doesn't knock you off course, and your follow-through gives others something solid to build on."],
+EA:["Connector","You bring people together. You remember names, notice who's left out and turn a group of individuals into a team."],
+ES:["Ambassador","You're confident and composed in front of people. You can represent an idea, a team or a company and stay level when the questions get hard."],
+AS:["Peacemaker","You're patient, warm and hard to rattle. When tension rises, you're the one who brings the temperature down."],
+FLAT:["Generalist","No single pair of traits dominates your profile. You don't lean hard on any one style, which lets you shift your approach to fit the situation in front of you."]
+};
+const EDGE = {
+O:["Stretch toward new ideas","Openness is your lowest score. You don't need to become a dreamer, but a little more exploration will widen the options you see.",["Once a month, try one method or tool you'd normally skip.","In meetings, ask \"what else could we try?\" before the group narrows down.","Read outside your field for 20 minutes a week."]],
+C:["Build a little more structure","Conscientiousness is your lowest score. Light systems, not rigid ones, will help your strengths land more reliably.",["Write tomorrow's top three tasks before you close the laptop.","Keep every commitment in one list instead of in your head.","Set a good-enough bar before you start, so you know when you're done."]],
+E:["Make your thinking visible","Extraversion is your lowest score. Your ideas are valuable, and a few small habits will make sure people hear them.",["Send a short written point of view before key meetings.","Book one informal conversation a week with someone outside your team.","Speak in the first ten minutes of a meeting, even briefly."]],
+A:["Let people see the care","Agreeableness is your lowest score. Your directness is an asset, and a bit more warmth will help it travel further.",["Before giving feedback, name what you want for the other person.","Ask how a decision lands before you move on.","Thank someone specifically, in writing, once a week."]],
+S:["Protect your energy","Steadiness is your lowest score. You feel pressure more than most, which also means you see risk early. A few routines can keep it from wearing you down.",["When a worry shows up, name it, then name the next small action.","Block recovery time after high-stakes days.","Keep a short list of past problems you handled well, and reread it."]]
+};
+const PAUSES = {
+15:["Part 2 of 4","A quarter of the way there.","Keep going with your first instinct. It's usually the most accurate answer."],
+30:["Part 3 of 4","Halfway. Your profile is taking shape.","Every answer moves the lines. The shape you end with will be yours alone."],
+45:["Part 4 of 4","Last stretch.","Fifteen statements left. About three minutes."]
+};
+const KEY = "sparktraits.v1";
+let S = {name:"", answers:Array(ITEMS.length).fill(0), idx:0, done:false, unlocked:false, lead:null};
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY)||"null"); if(r&&Array.isArray(r.answers)&&r.answers.length===ITEMS.length) S=Object.assign(S,r);}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+load();
+const $ = id => document.getElementById(id);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function score(answers){
+const sum={O:0,C:0,E:0,A:0,S:0}, n={O:0,C:0,E:0,A:0,S:0}, d={ideas:0,people:0,precision:0,momentum:0,autonomy:0};
+ITEMS.forEach((it,i)=>{const a=answers[i]; if(!a) return;
+if(it.kind==="t"){ sum[it.t]+= it.k>0 ? a : 6-a; n[it.t]++; } else d[it.d]+=a; });
+const t={}; ORDER.forEach(k=>{ t[k]= n[k] ? Math.round((sum[k]/n[k]-1)/4*100) : 50; });
+return {t, d, n};
+}
+function band(v){return v>=65?"hi":v<=40?"lo":"mid"}
+function archetype(t){
+const vals=ORDER.map(k=>t[k]); if(Math.max(...vals)-Math.min(...vals)<12) return "FLAT";
+const top=[...ORDER].sort((a,b)=>t[b]-t[a]).slice(0,2);
+if(t[top[1]]<50) return "FLAT"; // a type needs two traits that actually lean high
+return ORDER.filter(k=>top.includes(k)).join("");
+}
+function rankDrivers(d){return Object.keys(d).sort((a,b)=>d[b]-d[a]);}
+const portraits=[];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TAU=Math.PI*2, RING=1.1;
+function rand(seed){let x=Math.sin(seed*9301+49297)*233280;return x-Math.floor(x);}
+function Portrait(canvas,opts){
+opts=opts||{};
+const ctx=canvas.getContext("2d");
+const n=opts.points||46;
+const pts=[];
+for(let i=0;i<n;i++){ // ambient points, spread evenly with a sunflower layout plus jitter
+const f=(i+0.5)/n, r=Math.sqrt(f)*0.98, a=i*2.39996+rand(i)*0.4;
+pts.push({r:r*(0.92+rand(i+7)*0.16), a, ph:rand(i+3)*TAU, sp:0.4+rand(i+11)*0.6, amp:0.025+rand(i+13)*0.035, ox:0, oy:0, x:0, y:0});
+}
+const ringN=opts.ring||28, ring=[]; for(let i=0;i<ringN;i++) ring.push({a:i/ringN*TAU, ph:rand(i+40)*TAU, x:0,y:0});
+const p={canvas,ctx,pts,ring,progress:!!opts.progress,prog:{per:{O:0,C:0,E:0,A:0,S:0},n:0,total:60},vis:{O:1,C:1,E:1,A:1,S:1},cur:{O:50,C:50,E:50,A:50,S:50},target:{O:50,C:50,E:50,A:50,S:50},labels:!!opts.labels,hero:!!opts.hero,
+t:Math.random()*10, ptr:null, drag:-1, ripples:[], anchors:[], R:0, cx:0, cy:0};
+p.set=(t,instant)=>{p.target=Object.assign({},t); if(instant) p.cur=Object.assign({},t);};
+const pos=e=>{const b=canvas.getBoundingClientRect(); return {x:e.clientX-b.left,y:e.clientY-b.top};};
+canvas.addEventListener("pointermove",e=>{p.ptr=pos(e);
+if(p.drag>=0){ const k=ORDER[p.drag], dx=p.ptr.x-p.cx, dy=p.ptr.y-p.cy, d=Math.hypot(dx,dy);
+const v=Math.round(Math.max(0,Math.min(100,(d/p.R-0.22)/0.74*100))); p.target[k]=v; p.cur[k]=v; p.onDrag&&p.onDrag(); }
+else if(p.hero){ canvas.style.cursor = hitAnchor(p,p.ptr)>=0 ? "grab" : "default"; } });
+canvas.addEventListener("pointerleave",()=>{ if(p.drag<0) p.ptr=null; });
+canvas.addEventListener("pointerdown",e=>{ const q=pos(e); p.ptr=q;
+if(p.hero){ const h=hitAnchor(p,q); if(h>=0){ p.drag=h; canvas.setPointerCapture(e.pointerId); canvas.style.cursor="grabbing"; p.onGrab&&p.onGrab(); return; } }
+p.ripples.push({x:q.x,y:q.y,t:0}); });
+const end=()=>{ if(p.drag>=0){ p.drag=-1; canvas.style.cursor="grab"; } };
+canvas.addEventListener("pointerup",end); canvas.addEventListener("pointercancel",end);
+portraits.push(p); return p;
+}
+function hitAnchor(p,q){ let best=-1, bd=26; p.anchors.forEach((a,i)=>{const d=Math.hypot(a.x-q.x,a.y-q.y); if(d<bd){bd=d;best=i;}}); return best; }
+function tint(hex,amt){ const v=parseInt(hex.slice(1),16), m=c=>Math.round(c+(255-c)*amt); return "#"+[v>>16&255,v>>8&255,v&255].map(c=>m(c).toString(16).padStart(2,"0")).join(""); }
+function hexA(hex,a){ const v=parseInt(hex.slice(1),16); return `rgba(${v>>16&255},${v>>8&255},${v&255},${a})`; }
+function triangulate(coords){
+if(window.Delaunator){ try{ return Delaunator.from(coords).triangles; }catch(e){} }
+return null;
+}
+function draw(p,dt){
+const c=p.canvas, dpr=Math.min(2,window.devicePixelRatio||1), w=c.clientWidth, h=c.clientHeight;
+if(!w||!h) return;
+if(c.width!==Math.round(w*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}
+const ctx=p.ctx; ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+ORDER.forEach(k=>{ if(p.drag<0||ORDER[p.drag]!==k) p.cur[k]+=(p.target[k]-p.cur[k])*Math.min(1,dt*3.2); });
+if(!reduce) p.t+=dt;
+const R=Math.min(w,h)/2*(p.labels?0.6:(p.hero?(w<480?0.56:0.62):(p.progress?(w<260?0.68:0.47):0.86))), cx=w/2, cy=h/2;
+const prog=p.progress?p.prog:null;
+ORDER.forEach(k=>{ const on=!prog||prog.per[k]>0; p.vis[k]+=((on?1:0)-p.vis[k])*Math.min(1,dt*4); });
+const mf=prog?0.35:1; p.R=R; p.cx=cx; p.cy=cy;
+const cols=ORDER.map(k=>css(TRAITS[k].c)), ink=css("--ink"), accent=css("--accent"), muted=css("--muted");
+p.anchors=ORDER.map((k,i)=>{const a=i/5*TAU-Math.PI/2, rr=R*(0.22+0.74*p.cur[k]/100)*p.vis[k];
+const wob=reduce?0:Math.sin(p.t*0.8+i*1.7)*R*0.012; return {x:cx+Math.cos(a)*(rr+wob), y:cy+Math.sin(a)*(rr+wob), a, c:cols[i]};});
+const ptr=p.ptr, RR=R*RING;
+p.ripples.forEach(r=>r.t+=dt); p.ripples=p.ripples.filter(r=>r.t<1.4);
+const halo=ctx.createRadialGradient(cx,cy,RR*0.6,cx,cy,RR*1.35); halo.addColorStop(0,hexA(accent,prog?.06:.12)); halo.addColorStop(1,hexA(accent,0));
+ctx.fillStyle=halo; ctx.fillRect(0,0,w,h);
+const tints=["--b-o","--b-c","--b-e","--b-a","--b-s"].map(v=>css(v));
+ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,RR,0,TAU); ctx.clip();
+ctx.fillStyle=css("--surface"); ctx.fillRect(cx-RR,cy-RR,RR*2,RR*2);
+p.anchors.forEach((a,i)=>{ const k=ORDER[i], v=p.vis[k]; if(v<0.02) return;
+const drift=reduce?0:R*0.05, gx=a.x+Math.cos(p.t*0.45+i*1.3)*drift, gy=a.y+Math.sin(p.t*0.55+i*2.1)*drift;
+const reach=R*(0.55+0.6*p.cur[k]/100), st=(prog?0.6:0.85)*v;
+const g=ctx.createRadialGradient(gx,gy,0,gx,gy,reach);
+g.addColorStop(0,hexA(tints[i],0.82*st)); g.addColorStop(0.55,hexA(tints[i],0.34*st)); g.addColorStop(1,hexA(tints[i],0));
+ctx.fillStyle=g; ctx.fillRect(cx-RR,cy-RR,RR*2,RR*2); });
+const tx=ptr?ptr.x:cx-RR*0.38, ty=ptr?ptr.y:cy-RR*0.42; p.sx=(p.sx??tx)+(tx-(p.sx??tx))*Math.min(1,dt*6); p.sy=(p.sy??ty)+(ty-(p.sy??ty))*Math.min(1,dt*6);
+const sh=ctx.createRadialGradient(p.sx,p.sy,0,p.sx,p.sy,RR*0.95); sh.addColorStop(0,`rgba(255,255,255,${ptr?0.6:0.4})`); sh.addColorStop(1,"rgba(255,255,255,0)");
+ctx.fillStyle=sh; ctx.fillRect(cx-RR,cy-RR,RR*2,RR*2);
+p.ripples.forEach(r=>{ ctx.beginPath(); ctx.arc(r.x,r.y,r.t*R*1.6,0,TAU); ctx.strokeStyle=`rgba(255,255,255,${0.7*(1-r.t/1.4)})`; ctx.lineWidth=3; ctx.stroke(); });
+ctx.restore();
+ctx.beginPath(); ctx.arc(cx,cy,RR,0,TAU); ctx.strokeStyle=hexA(ink,.14); ctx.lineWidth=1; ctx.stroke();
+ctx.beginPath(); p.anchors.forEach((a,i)=>i?ctx.lineTo(a.x,a.y):ctx.moveTo(a.x,a.y)); ctx.closePath();
+ctx.fillStyle="rgba(255,255,255,.18)"; ctx.fill(); ctx.strokeStyle=accent; ctx.lineWidth=2; ctx.stroke();
+if(prog){ p.anchors.forEach(a=>{ const cs=Math.cos(a.a), sn=Math.sin(a.a); ctx.beginPath(); ctx.moveTo(cx+cs*R*0.2,cy+sn*R*0.2); ctx.lineTo(cx+cs*R*RING,cy+sn*R*RING); ctx.strokeStyle="rgba(255,255,255,.75)"; ctx.lineWidth=1; ctx.stroke(); }); }
+else p.anchors.forEach(a=>{ ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(a.x,a.y); ctx.strokeStyle="rgba(255,255,255,.7)"; ctx.lineWidth=1; ctx.setLineDash([3,4]); ctx.stroke(); ctx.setLineDash([]); });
+if(!prog){ ctx.beginPath(); ctx.arc(cx,cy,3.5,0,TAU); ctx.fillStyle=accent; ctx.fill(); }
+if(p.hero){ p.anchors.forEach(a=>{ ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(cx+Math.cos(a.a)*(R*RING+12),cy+Math.sin(a.a)*(R*RING+12)); ctx.strokeStyle=hexA(a.c,.55); ctx.lineWidth=1.2; ctx.stroke(); }); }
+const pulse=reduce?0:(Math.sin(p.t*2.4)+1)/2;
+p.anchors.forEach((a,i)=>{
+if(p.vis[ORDER[i]]<0.05) return;
+const big=p.hero?9:(p.labels?7:(prog?6:5.5)), hot=p.drag===i||(ptr&&Math.hypot(a.x-ptr.x,a.y-ptr.y)<26);
+if(p.hero){ ctx.beginPath(); ctx.arc(a.x,a.y,big+6+pulse*5,0,TAU); ctx.fillStyle=hexA(a.c,hot?.28:.14); ctx.fill(); }
+ctx.beginPath(); ctx.arc(a.x,a.y,hot?big+2:big,0,TAU); ctx.fillStyle=a.c; ctx.fill();
+ctx.lineWidth=2.5; ctx.strokeStyle=css("--surface"); ctx.stroke();
+if(p.labels){
+const k=ORDER[i], lx=cx+Math.cos(a.a)*(R*RING+30), ly=cy+Math.sin(a.a)*(R*RING+30);
+ctx.textAlign="center"; ctx.textBaseline="middle";
+ctx.font="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif"; const nm=w<520?TRAITS[k].name.slice(0,w<420?5:8).toUpperCase()+(w<520?".":""):TRAITS[k].name.toUpperCase();
+const half=ctx.measureText(nm).width/2+2, lxc=Math.max(half,Math.min(w-half,lx));
+ctx.fillStyle=ink; ctx.fillText(nm,lxc,ly-8);
+ctx.fillStyle=a.c; ctx.font="600 15px 'Helvetica Neue', Helvetica, Arial, sans-serif"; ctx.fillText(String(Math.round(p.target[k])),lxc,ly+9);
+}
+});
+if(prog){
+const done=prog.n/prog.total, rr=R*RING+9;
+ctx.beginPath(); ctx.arc(cx,cy,rr,0,TAU); ctx.strokeStyle=hexA(ink,.10); ctx.lineWidth=4; ctx.stroke();
+p.shown=(p.shown??done)+(done-(p.shown??done))*Math.min(1,dt*5);
+if(p.shown>0.001){ ctx.beginPath(); ctx.arc(cx,cy,rr,-Math.PI/2,-Math.PI/2+TAU*p.shown); ctx.strokeStyle=accent; ctx.lineWidth=4; ctx.lineCap="round"; ctx.stroke(); ctx.lineCap="butt"; }
+const cr=R*0.19; ctx.beginPath(); ctx.arc(cx,cy,cr,0,TAU); ctx.fillStyle=css("--surface"); ctx.fill(); ctx.strokeStyle=hexA(ink,.12); ctx.lineWidth=1; ctx.stroke();
+ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillStyle=ink;
+ctx.font=`700 ${Math.max(14,cr*0.78)|0}px 'Helvetica Neue', Helvetica, Arial, sans-serif`; ctx.fillText(Math.round(done*100)+"%",cx,cy-(w<260?0:cr*0.12));
+if(w>=260){ ctx.font="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif"; ctx.fillStyle=muted; ctx.fillText("DONE",cx,cy+cr*0.45); }
+p.anchors.forEach((a,i)=>{ const k=ORDER[i], lr=R*RING+(w<260?18:40), lx=cx+Math.cos(a.a)*lr, ly=cy+Math.sin(a.a)*lr;
+ctx.font="600 10px 'Helvetica Neue', Helvetica, Arial, sans-serif";
+const nm=w<260?k:TRAITS[k].name.toUpperCase(), half=ctx.measureText(nm).width/2+2, x=Math.max(half,Math.min(w-half,cx+Math.cos(a.a)*(lr+(w<260?0:half*Math.abs(Math.cos(a.a))*0.6))));
+ctx.fillStyle=prog.per[k]?cols[i]:muted; ctx.fillText(nm,x,ly-(w<260?0:5));
+if(w>=260){ const sw=5,g=2,tw=10*sw+9*g; let bx=Math.max(tw/2,Math.min(w-tw/2,x))-tw/2;
+for(let j=0;j<10;j++){ ctx.fillStyle=j<prog.per[k]?cols[i]:hexA(ink,.13); ctx.fillRect(bx+j*(sw+g),ly+5,sw,4); } } });
+}
+if(p.onFrame) p.onFrame();
+}
+function burst(p){ const c=p.canvas; if(reduce||!c.clientWidth) return; p.ripples.push({x:c.clientWidth/2,y:c.clientHeight/2,t:0}); }
+let last=performance.now();
+function loop(now){const dt=Math.max(0,Math.min(.05,(now-last)/1000)); last=now; portraits.forEach(p=>{if(p.canvas.offsetParent) draw(p,dt);}); requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+const pIntro=Portrait($("cIntro"),{hero:true,points:64}), pQuiz=Portrait($("cQuiz"),{points:40,progress:true}), pPause=Portrait($("cPause"),{points:36,progress:true}), pRes=Portrait($("cResult"),{labels:true,points:56});
+const samples=[{O:84,C:62,E:40,A:72,S:56},{O:46,C:86,E:68,A:42,S:74},{O:72,C:36,E:90,A:64,S:46},{O:58,C:74,E:52,A:86,S:82}];
+const chips=$("chips");
+chips.innerHTML=ORDER.map((k,i)=>`<span class="chip c${i}" style="--c:var(${TRAITS[k].c})"><i></i>${TRAITS[k].name}<b data-k="${k}">0</b></span>`).join("");
+const chipEls=[...chips.querySelectorAll(".chip")];
+let userDriven=false;
+function refreshChips(){ const t={}; ORDER.forEach(k=>t[k]=Math.round(pIntro.target[k]));
+chips.querySelectorAll("b[data-k]").forEach(b=>b.textContent=t[b.dataset.k]);
+$("chipType").textContent="The "+ARCH[archetype(t)][0]; }
+pIntro.onFrame=()=>{ const cw=pIntro.canvas.clientWidth, R=pIntro.R;
+pIntro.anchors.forEach((a,i)=>{ const el=chipEls[i]; if(!el) return; const off=34;
+const hw=el.offsetWidth/2, hh=el.offsetHeight/2, cs=Math.cos(a.a), sn=Math.sin(a.a), ring=R*RING+12;
+let x=pIntro.cx+cs*(ring+hw*Math.abs(cs)), y=pIntro.cy+sn*(ring+hh*Math.abs(sn));
+const half=hw+2; x=Math.max(half,Math.min(cw-half,x));
+el.style.left=x+"px"; el.style.top=y+"px"; }); };
+pIntro.onDrag=()=>{ refreshChips(); };
+pIntro.onGrab=()=>{ userDriven=true; $("chipLbl").textContent="Your shape"; $("heroHint").textContent="Now take the test to see your real one."; };
+function showSample(i){ pIntro.set(samples[i]); refreshChips(); burst(pIntro); }
+let si=0; pIntro.set(samples[0],true); showSample(0);
+setInterval(()=>{ if(userDriven||document.hidden||$("s-intro").hidden) return; si=(si+1)%samples.length; showSample(si);},4200);
+const screens=["intro","quiz","pause","results"];
+function show(name){
+screens.forEach(s=>{$("s-"+s).hidden = s!==name;});
+$("chapters").hidden = !(name==="quiz"||name==="pause");
+window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});
+}
+function setChapters(){
+const answered=S.idx; [...$("chapters").querySelectorAll("i")].forEach((el,i)=>{
+const f=Math.max(0,Math.min(1,(answered-i*15)/15)); el.style.transform=`scaleX(${f})`; });
+}
+if(S.answers.some(a=>a) && !S.done){$("resume").hidden=false;}
+if(S.name) $("nameIn").value=S.name;
+$("startForm").addEventListener("submit",e=>{e.preventDefault();
+S={name:$("nameIn").value.trim(), answers:Array(ITEMS.length).fill(0), idx:0, done:false, unlocked:false, lead:null}; save(); startQuiz();});
+$("resumeBtn").addEventListener("click",()=>{ if(!S.name&&$("nameIn").value.trim()) S.name=$("nameIn").value.trim(); startQuiz();});
+$("scale").innerHTML=LABELS.map((l,i)=>`<button type="button" class="opt" role="radio" aria-checked="false" data-v="${i+1}"><span class="dot"></span><span>${l}</span><kbd>${i+1}</kbd></button>`).join("");
+let busy=false;
+function progOf(){ const per={O:0,C:0,E:0,A:0,S:0}; let n=0, dn=0; ITEMS.forEach((it,i)=>{ if(!S.answers[i]) return; n++; if(it.kind==="t") per[it.t]++; else dn++; }); return {per,n,dn,total:ITEMS.length}; }
+function feed(p){ const pr=progOf(); p.prog=pr; const sc=score(S.answers).t; p.set(sc); const d=$("drvProg"); if(d) d.textContent=`Work drivers: ${pr.dn} of 10 answered`; }
+function startQuiz(){ show("quiz"); renderQ(true); }
+function renderQ(first){
+const it=ITEMS[S.idx], q=$("qText");
+const put=()=>{
+q.textContent=it.text; q.classList.remove("out"); void q.offsetWidth; q.classList.add("in");
+$("qCount").textContent=`Statement ${S.idx+1} of ${ITEMS.length}`;
+$("qChapter").textContent=`Part ${Math.floor(S.idx/15)+1} of 4`;
+const left=Math.max(1,Math.round((ITEMS.length-S.idx)*12/60));
+$("qLeft").textContent= left<=1?"Under a minute left":`About ${left} min left`;
+$("backBtn").disabled = S.idx===0;
+[...$("scale").children].forEach(b=>{const on=+b.dataset.v===S.answers[S.idx]; b.classList.toggle("sel",on); b.setAttribute("aria-checked",on);});
+setChapters(); feed(pQuiz); busy=false;
+};
+busy=true;
+if(first||reduce){put();return;}
+q.classList.remove("in"); q.classList.add("out"); setTimeout(put,180);
+}
+function answer(v){
+if(busy) return; busy=true;
+S.answers[S.idx]=v; save();
+[...$("scale").children].forEach(b=>{const on=+b.dataset.v===v; b.classList.toggle("sel",on); b.setAttribute("aria-checked",on);});
+feed(pQuiz); burst(pQuiz);
+setTimeout(()=>{
+if(S.idx===ITEMS.length-1){ S.idx=ITEMS.length; S.done=true; save(); setChapters(); computing(); return; }
+S.idx++; save();
+if(PAUSES[S.idx] && !S.answers[S.idx]){ busy=false; pause(S.idx); } else renderQ();
+},240);
+}
+$("scale").addEventListener("click",e=>{const b=e.target.closest(".opt"); if(b) answer(+b.dataset.v);});
+function goBack(){ if(busy||S.idx<=0) return; S.idx--; save(); renderQ(); }
+$("backBtn").addEventListener("click",goBack);
+document.addEventListener("keydown",e=>{
+if($("s-quiz").hidden||e.metaKey||e.ctrlKey||e.altKey) return;
+if(/^[1-5]$/.test(e.key)) answer(+e.key);
+else if(e.key==="Backspace"||e.key==="ArrowLeft"){ if(S.idx>0){ e.preventDefault(); goBack(); } }
+});
+function pause(at){
+const [eb,ti,bo]=PAUSES[at];
+$("pEyebrow").textContent=eb; $("pTitle").textContent=ti; $("pBody").textContent=bo;
+$("pBtn").hidden=false; $("steps").hidden=true; $("pBody").hidden=false;
+feed(pPause); pPause.cur=Object.assign({},pPause.target); show("pause"); setChapters(); $("pBtn").focus({preventScroll:true});
+}
+$("pBtn").addEventListener("click",()=>{ show("quiz"); renderQ(true); });
+function computing(){
+$("pEyebrow").textContent="All 60 answered"; $("pTitle").textContent= S.name?`Building your profile, ${S.name}.`:"Building your profile.";
+$("pBody").hidden=true; $("pBtn").hidden=true; $("steps").hidden=false;
+const lis=[...$("steps").children]; lis.forEach(l=>l.classList.remove("on"));
+feed(pPause); show("pause");
+lis.forEach((l,i)=>setTimeout(()=>l.classList.add("on"),350+i*600));
+setTimeout(results,reduce?400:3000);
+}
+function results(){
+const sc=score(S.answers), t=sc.t, key=archetype(t), [aname,abody]=ARCH[key];
+show("results");
+pRes.set({O:50,C:50,E:50,A:50,S:50},true); setTimeout(()=>pRes.set(t),200);
+$("rEyebrow").textContent = S.name?`${S.name}'s profile`:"Your profile";
+$("rTitle").innerHTML = `You're <em>The ${esc(aname)}.</em>`;
+$("rSummary").textContent = abody;
+$("rCode").innerHTML = ORDER.map(k=>`<span style="color:var(${TRAITS[k].c})"><b>${k}</b>${t[k]}</span>`).join("");
+$("rTraits").innerHTML = ORDER.map(k=>`<div class="trait"><div class="nm">${TRAITS[k].name}<small>${TRAITS[k].sub}</small></div>
+<div class="track"><i data-w="${t[k]}" style="background:var(${TRAITS[k].c})"></i><div class="ends"><span>${TRAITS[k].lo}</span><span>${TRAITS[k].hi}</span></div></div>
+<div class="val">${t[k]}</div></div>`).join("");
+requestAnimationFrame(()=>setTimeout(()=>$("rTraits").querySelectorAll("i[data-w]").forEach(i=>i.style.width=i.dataset.w+"%"),150));
+const dr=rankDrivers(sc.d);
+$("ghosts").innerHTML = [
+[`${TRAITS[ORDER[0]].name}, in depth`,"What your score means at work, how it shows up under pressure, and what to watch for."],
+[`Your top driver: ${DRIVERS[dr[0]].name}`,"The conditions where you do your best work, and the ones that quietly drain you."],
+["Your growth edge","The one trait with the most room to grow, and three habits to start this week."]
+].map(g=>`<div class="ghost"><h3>${esc(g[0])}</h3><p>${esc(g[1])} ${esc(abody)}</p></div>`).join("");
+$("gTitle").textContent = S.name?`${S.name}, there's a lot more here.`:"There's a lot more here.";
+$("gName").value=S.name||"";
+buildFull(sc,dr);
+if(S.unlocked){ unlockView(); }
+}
+function buildFull(sc,dr){
+const t=sc.t;
+$("rDeep").innerHTML = ORDER.map(k=>{const [bn,body,work,watch]=BANDS[k][band(t[k])];
+return `<article class="dive"><div class="lbl"><span class="mono">${TRAITS[k].name}</span><span class="score" style="color:var(${TRAITS[k].c})">${t[k]}</span><span class="band">${bn}</span></div>
+<div class="txt"><p style="font-size:19px">${esc(body)}</p><div><h4>At work</h4><p>${esc(work)}</p></div><div><h4>Watch for</h4><p>${esc(watch)}</p></div></div></article>`;}).join("");
+$("rDrivers").innerHTML = dr.map((k,i)=>{const v=sc.d[k]; const filled=Math.round((v-2)/8*10);
+return `<div class="drv ${i===0?"top":""}">${i<2?`<span class="tag">${i===0?"Top driver":"Second driver"}</span>`:`<span class="tag" style="color:var(--muted)">#${i+1}</span>`}
+<span class="n">${DRIVERS[k].name}</span><span class="meter">${Array.from({length:10},(_,j)=>`<i class="${j<filled?"f":""}"></i>`).join("")}</span><p>${esc(DRIVERS[k].body)}</p></div>`;}).join("");
+const low=[...ORDER].sort((a,b)=>t[a]-t[b])[0], [et,eb,steps]=EDGE[low];
+$("rEdgeTag").textContent=`${TRAITS[low].name} · ${t[low]}`;
+$("rEdgeTitle").textContent=et; $("rEdgeBody").textContent=eb;
+$("rEdgeSteps").innerHTML=steps.map(s=>`<li>${esc(s)}</li>`).join("");
+}
+function unlockView(){
+$("lockedBlock").hidden=true; $("full").hidden=false;
+if(S.lead&&S.lead.consult) consultDone();
+}
+const HS_PORTAL="__HS_PORTAL__", HS_FORM="__HS_FORM__";
+function leadRecord(extra){
+const sc=score(S.answers), dr=rankDrivers(sc.d), key=archetype(sc.t);
+const low=[...ORDER].sort((a,b)=>sc.t[a]-sc.t[b])[0];
+return Object.assign({
+firstname:S.lead?.name||S.name||"", email:S.lead?.email||"", jobtitle:S.lead?.role||"", spark_debrief_requested:S.lead?.consult?"true":"false",
+spark_profile:"The "+ARCH[key][0], spark_openness:sc.t.O, spark_conscientiousness:sc.t.C, spark_extraversion:sc.t.E, spark_agreeableness:sc.t.A, spark_steadiness:sc.t.S,
+spark_top_driver:DRIVERS[dr[0]].name, spark_second_driver:DRIVERS[dr[1]].name, spark_growth_edge:TRAITS[low].name
+}, extra||{});
+}
+async function submitLead(rec){
+if($("gWebsite")&&$("gWebsite").value) return true; // honeypot
+if(HS_PORTAL.startsWith("__")) return false;
+const hutk=(document.cookie.match(/(?:^|; )hubspotutk=([^;]+)/)||[])[1];
+const body={fields:Object.entries(rec).map(([name,value])=>({objectTypeId:"0-1",name,value:String(value)})),
+context:Object.assign({pageUri:location.href,pageName:document.title},hutk?{hutk}:{})};
+try{ const r=await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body),keepalive:true}); return r.ok; }
+catch(e){ return false; }
+}
+$("gateForm").addEventListener("submit",async e=>{
+e.preventDefault();
+const name=$("gName").value.trim(), email=$("gEmail").value.trim();
+if(!name){$("gErr").textContent="Add your first name so we can personalize your report."; $("gName").focus(); return;}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){$("gErr").textContent="That email doesn't look complete. Check it and try again."; $("gEmail").focus(); return;}
+$("gErr").textContent="";
+S.name=S.name||name; S.lead={name,email,role:$("gRole").value.trim(),consult:$("gConsult").checked,createdAt:new Date().toISOString(),id:S.lead?.id};
+S.unlocked=true; save();
+$("rEyebrow").textContent=`${S.name}'s profile`;
+submitLead(leadRecord());
+unlockView();
+$("full").scrollIntoView({behavior:reduce?"auto":"smooth"});
+});
+function consultDone(){ $("consultBtn").hidden=true; const ok=$("consultOk"); ok.hidden=false; ok.textContent=`Request received. We'll reach out to ${S.lead?.email||"you"} to find a time.`; }
+$("consultBtn").addEventListener("click",()=>{ if(!S.lead) return; S.lead.consult=true; save(); submitLead(leadRecord()); consultDone(); });
+$("retake").addEventListener("click",()=>{ S={name:S.name, answers:Array(ITEMS.length).fill(0), idx:0, done:false, unlocked:false, lead:null}; save(); $("lockedBlock").hidden=false; $("full").hidden=true; $("consultBtn").hidden=false; $("consultOk").hidden=true; $("resume").hidden=true; show("intro"); });
+$("saveReport").hidden=false;
+$("saveReport").addEventListener("click",()=>{
+const sc=score(S.answers), key=archetype(sc.t), dr=rankDrivers(sc.d);
+let md=`# ${S.name?S.name+"'s":"Your"} ${BRAND} profile\n\n## The ${ARCH[key][0]}\n\n${ARCH[key][1]}\n\n## Traits (0 to 100)\n\n`;
+ORDER.forEach(k=>{const b=BANDS[k][band(sc.t[k])]; md+=`### ${TRAITS[k].name}: ${sc.t[k]} (${b[0]})\n\n${b[1]}\n\n**At work.** ${b[2]}\n\n**Watch for.** ${b[3]}\n\n`;});
+md+=`## What drives you\n\n`+dr.map((k,i)=>`${i+1}. **${DRIVERS[k].name}.** ${DRIVERS[k].body}`).join("\n")+"\n\n";
+const low=[...ORDER].sort((a,b)=>sc.t[a]-sc.t[b])[0]; md+=`## Your growth edge: ${EDGE[low][0]}\n\n${EDGE[low][1]}\n\n`+EDGE[low][2].map(x=>`- ${x}`).join("\n")+"\n\nsparktraits.com\n";
+const url=URL.createObjectURL(new Blob([md],{type:"text/markdown"})); const a=document.createElement("a"); a.href=url; a.download="Spark-Traits-profile.md"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+if(S.done){ results(); } else show("intro");
+addEventListener("resize",()=>{});
+})();
+</script>
+</body>
+</html>
