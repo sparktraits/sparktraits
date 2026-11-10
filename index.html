@@ -844,8 +844,16 @@ spark_profile:"The "+ARCH[key][0], spark_openness:sc.t.O, spark_conscientiousnes
 spark_top_driver:DRIVERS[dr[0]].name, spark_second_driver:DRIVERS[dr[1]].name, spark_growth_edge:TRAITS[low].name
 }, extra||{});
 }
+const NOTIFY="https://formsubmit.co/ajax/akeogler@gmail.com";
+async function notify(subject,fields){
+try{ const r=await fetch(NOTIFY,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(Object.assign({_subject:subject,_template:"table",_captcha:"false"},fields,{Page:location.href,Sent:new Date().toLocaleString()})),keepalive:true}); return r.ok; }
+catch(e){ return false; }
+}
+const LBL={firstname:"First name",lastname:"Last name",email:"Email",phone:"Phone",jobtitle:"Role",spark_debrief_requested:"Wants a debrief",spark_profile:"Profile",spark_openness:"Openness",spark_conscientiousness:"Conscientiousness",spark_extraversion:"Extraversion",spark_agreeableness:"Agreeableness",spark_steadiness:"Steadiness",spark_top_driver:"Top driver",spark_second_driver:"Second driver",spark_growth_edge:"Growth edge"};
 async function submitLead(rec){
 if($("gWebsite")&&$("gWebsite").value) return true; // honeypot
+const f={}; Object.entries(rec).forEach(([k,v])=>f[LBL[k]||k]=String(v));
+notify(`Spark Traits lead: ${rec.firstname} ${rec.lastname||""}${rec.spark_debrief_requested==="true"?" (wants a debrief)":""}`.replace(/\s+/g," "),f);
 if(HS_PORTAL.startsWith("__")) return false;
 const hutk=(document.cookie.match(/(?:^|; )hubspotutk=([^;]+)/)||[])[1];
 const body={fields:Object.entries(rec).map(([name,value])=>({objectTypeId:"0-1",name,value:String(value)})),
@@ -889,9 +897,8 @@ if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){$("cErr").textContent="That ema
 if(!msg){$("cErr").textContent="Write a short message before sending."; $("cMsg").focus(); return;}
 $("cErr").textContent=""; $("cBtn").disabled=true;
 if($("cWebsite").value){ $("cOk").hidden=false; $("cOk").textContent="Thanks. Your message is on its way."; return; }
-if(HS_PORTAL.startsWith("__")){ location.href=`mailto:hello@sparktraits.com?subject=${encodeURIComponent("Spark Traits: message from "+name)}&body=${encodeURIComponent(msg+"\n\n"+name+" ("+email+")")}`; $("cOk").hidden=false; $("cOk").textContent="Your email app should open with your message ready to send. If it doesn't, write to hello@sparktraits.com."; $("cBtn").disabled=false; return; }
-let ok=false;
-if(!HS_PORTAL.startsWith("__")){ try{ const r=await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:[["firstname",name],["email",email],["message",msg]].map(([n,v])=>({objectTypeId:"0-1",name:n,value:v})),context:{pageUri:location.href,pageName:"Contact"}})}); ok=r.ok; }catch(err){} }
+let ok=await notify(`Spark Traits message from ${name}`,{Name:name,Email:email,Message:msg,_replyto:email});
+if(!HS_PORTAL.startsWith("__")){ try{ const r=await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HS_PORTAL}/${HS_FORM}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fields:[["firstname",name],["email",email],["message",msg]].map(([n,v])=>({objectTypeId:"0-1",name:n,value:v})),context:{pageUri:location.href,pageName:"Contact"}})}); ok=ok||r.ok; }catch(err){} }
 if(ok){ $("contactForm").querySelectorAll("input,textarea").forEach(x=>x.value=""); $("cOk").hidden=false; $("cOk").textContent=`Thanks, ${name}. We'll reply to ${email} soon.`; }
 else { $("cErr").textContent="Your message didn't send. Email hello@sparktraits.com instead."; }
 $("cBtn").disabled=false;
