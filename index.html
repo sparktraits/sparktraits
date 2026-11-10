@@ -127,7 +127,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hn{font-family:var(--mono);font-size:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent-deep);color:var(--accent-ink)}
 .sitefoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:24px 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .sitefoot .mark{color:var(--ink);gap:.28em}
-.foot{margin-top:28px;font-size:13px;color:var(--muted);max-width:52ch}
+.footnote{flex:0 0 100%;margin:4px 0 0;font-size:11px;line-height:1.5;color:var(--muted)}
 .portrait{position:relative;aspect-ratio:1;width:100%;max-width:560px;justify-self:center}
 .portrait canvas{width:100%;height:100%;display:block}
 .resume{margin-top:14px;font-size:14px;color:var(--muted)}
@@ -307,7 +307,6 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 </form>
 <p class="resume" id="resume" hidden>You have a test in progress. <button type="button" id="resumeBtn">Pick up where you left off</button></p>
 <p class="trust"><span>No account needed</span><span>Free snapshot in 12 minutes</span><span>Private by default</span></p>
-<p class="foot">Built on the public-domain IPIP Big-Five Factor Markers (Goldberg, 1992), the most widely researched framework for personality, plus a short work-drivers scale of our own.</p>
 </div>
 <div class="herovis"><div class="portrait heroart"><canvas id="cIntro" aria-label="Interactive sample personality profile"></canvas><div class="chips" id="chips" aria-hidden="true"></div></div><div class="herometa"><span class="chip-type"><small id="chipLbl">Sample profile</small><b id="chipType"></b></span><p class="hint" id="heroHint">Drag a colored dot to reshape it. Tap anywhere for a ripple.</p></div></div>
 </div>
@@ -353,7 +352,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <p class="ok" id="cOk" hidden></p>
 </form>
 </section>
-<footer class="sitefoot"><span class="mark" style="font-size:18px"><b>Spark</b> Traits</span><span>&copy; 2026 Spark Traits &middot; <a href="#about">About</a> &middot; <a href="#contact">Contact</a> &middot; <a href="/privacy.html">Privacy</a></span></footer>
+<footer class="sitefoot"><span class="mark" style="font-size:18px"><b>Spark</b> Traits</span><span>&copy; 2026 Spark Traits &middot; <a href="#about">About</a> &middot; <a href="#contact">Contact</a> &middot; <a href="/privacy.html">Privacy</a></span><p class="footnote">Built on the public-domain IPIP Big-Five Factor Markers (Goldberg, 1992), the most widely researched framework for personality, plus a short work-drivers scale of our own.</p></footer>
 </main>
 <!-- QUIZ -->
 <main id="s-quiz" class="screen" hidden>
