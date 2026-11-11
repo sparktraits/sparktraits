@@ -278,7 +278,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <div class="wrap" id="top">
 <header class="bar">
 <a class="mark" href="#top" id="homeLink" aria-label="Spark Traits home">
-<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c1.2 7.6 6.4 12.8 14 14-7.6 1.2-12.8 6.4-14 14-1.2-7.6-6.4-12.8-14-14 7.6-1.2 12.8-6.4 14-14Z" fill="var(--accent)"/><circle cx="26" cy="6" r="2" fill="var(--t-e)"/></svg>
+<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2c1.2 7.6 6.4 12.8 14 14-7.6 1.2-12.8 6.4-14 14-1.2-7.6-6.4-12.8-14-14 7.6-1.2 12.8-6.4 14-14Z" fill="var(--accent)"/><path transform="translate(21.7 0.7) scale(.3)" d="M16 2c1.2 7.6 6.4 12.8 14 14-7.6 1.2-12.8 6.4-14 14-1.2-7.6-6.4-12.8-14-14 7.6-1.2 12.8-6.4 14-14Z" fill="#FF7A33"/></svg>
 <span id="brand"><b>Spark</b> Traits</span>
 </a>
 <nav class="nav" id="nav" aria-label="Main"><a href="#about" class="hide-sm">About</a><a href="#contact">Contact</a><a class="btn accent" href="#top" id="navStart">Take the test</a></nav>
@@ -319,12 +319,12 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <section class="about anchor" id="about" aria-labelledby="aboutTitle">
 <div>
 <p class="mono">About Spark Traits</p>
-<h2 id="aboutTitle">Most tests give you a label. We give you <em>a shape.</em></h2>
-<p class="lead">Spark Traits started with a simple frustration. Most personality tests either put you in a box or charge you to read about yourself alone. We built the one we wanted: free, honest about the science, and useful on Monday morning.</p>
+<h2 id="aboutTitle">Your personality has <em>a shape.</em></h2>
+<p class="lead">Spark Traits started with a simple idea. A personality test should be free, honest about the science, and useful on Monday morning. So we built one.</p>
 </div>
 <div class="pillars">
-<div class="pillar"><i style="background:var(--b-o)"></i><div><h3>Built on real science</h3><p>The Big Five is the most researched model of personality. Our statements come from the public-domain IPIP item set, and we tell you exactly what your scores mean and what they don't.</p></div></div>
-<div class="pillar"><i style="background:var(--b-c)"></i><div><h3>Scales, not boxes</h3><p>You get a score from 0 to 100 on each trait, so two "introverts" no longer look the same. Every end of every scale has real strengths.</p></div></div>
+<div class="pillar"><i style="background:var(--b-o)"></i><div><h3>Built on real science</h3><p>The Big Five is the most researched model of personality. Our statements come from the public-domain IPIP item set, and we explain exactly what your scores mean.</p></div></div>
+<div class="pillar"><i style="background:var(--b-c)"></i><div><h3>Scored on scales</h3><p>You get a score from 0 to 100 on each trait, so two "introverts" no longer look the same. Every end of every scale has real strengths.</p></div></div>
 <div class="pillar"><i style="background:var(--b-e)"></i><div><h3>Results you can act on</h3><p>Every report ends with your growth edge, three habits to try this week, and an offer to talk it through with a person.</p></div></div>
 </div>
 </section>
@@ -401,7 +401,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <section class="block">
 <div class="bh"><h2>Your five traits</h2><span class="mono">Scale 0 to 100</span></div>
 <div class="traits" id="rTraits"></div>
-<p class="note">Scores show where you landed on each scale based on your own answers, from 0 (lowest possible) to 100 (highest possible). They are not percentiles against other people. No score is good or bad; each end of every scale has real strengths.</p>
+<p class="note">Scores show where you landed on each scale based on your own answers, from 0 (lowest possible) to 100 (highest possible). Each score compares you with the scale itself, so it says nothing about how you rank against other people. Each end of every scale has real strengths.</p>
 </section>
 <section class="block" id="lockedBlock">
 <div class="bh"><h2>Your full report</h2><span class="mono">Free with your email</span></div>
@@ -552,7 +552,7 @@ FLAT:["Generalist","No single pair of traits dominates your profile. You don't l
 };
 const EDGE = {
 O:["Stretch toward new ideas","Openness is your lowest score. You don't need to become a dreamer, but a little more exploration will widen the options you see.",["Once a month, try one method or tool you'd normally skip.","In meetings, ask \"what else could we try?\" before the group narrows down.","Read outside your field for 20 minutes a week."]],
-C:["Build a little more structure","Conscientiousness is your lowest score. Light systems, not rigid ones, will help your strengths land more reliably.",["Write tomorrow's top three tasks before you close the laptop.","Keep every commitment in one list instead of in your head.","Set a good-enough bar before you start, so you know when you're done."]],
+C:["Build a little more structure","Conscientiousness is your lowest score. Light, flexible systems will help your strengths land more reliably.",["Write tomorrow's top three tasks before you close the laptop.","Keep every commitment in one list instead of in your head.","Set a good-enough bar before you start, so you know when you're done."]],
 E:["Make your thinking visible","Extraversion is your lowest score. Your ideas are valuable, and a few small habits will make sure people hear them.",["Send a short written point of view before key meetings.","Book one informal conversation a week with someone outside your team.","Speak in the first ten minutes of a meeting, even briefly."]],
 A:["Let people see the care","Agreeableness is your lowest score. Your directness is an asset, and a bit more warmth will help it travel further.",["Before giving feedback, name what you want for the other person.","Ask how a decision lands before you move on.","Thank someone specifically, in writing, once a week."]],
 S:["Protect your energy","Steadiness is your lowest score. You feel pressure more than most, which also means you see risk early. A few routines can keep it from wearing you down.",["When a worry shows up, name it, then name the next small action.","Block recovery time after high-stakes days.","Keep a short list of past problems you handled well, and reread it."]]
