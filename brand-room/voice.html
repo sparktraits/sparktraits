@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Brand voice · Spark Traits</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#FFF8F1;--surface:#fff;--ink:#1E130E;--muted:#7A6457;--line:#EEDCCC;--line-strong:#9E8573;--ember:#E04E14;--deep:#C2410C;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--deep)}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px max(20px,env(safe-area-inset-left,0px))}
+.brand{font-size:20px;letter-spacing:-.03em;text-decoration:none;color:var(--ink)}
+.brand b{font-weight:800}
+.tabs{display:flex;gap:6px}
+.tabs a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--ink);font-size:14px;border:1px solid transparent}
+.tabs a.on{border-color:var(--ink)}
+main{max-width:1080px;margin:0 auto;padding:40px max(20px,env(safe-area-inset-left,0px)) 80px}
+.gate{max-width:420px;margin:12vh auto;text-align:left}
+.gate h1{font-size:40px;letter-spacing:-.04em;line-height:1.05;margin:0 0 10px}
+.gate p{color:var(--muted);margin:0 0 22px}
+.gate form{display:flex;gap:8px}
+.gate input{flex:1;min-width:0;font:inherit;padding:12px 16px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface)}
+.gate button,.dl{font:inherit;font-weight:700;border:0;border-radius:999px;padding:12px 20px;background:var(--deep);color:#fff;cursor:pointer}
+.gate .err{color:var(--deep);min-height:1.5em;margin-top:10px}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.ph{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.eye{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+h1{font-size:clamp(38px,6vw,64px);line-height:1;letter-spacing:-.045em;margin:0 0 18px;text-wrap:balance}
+h1 em,h2 em{color:var(--ember);font-style:italic}
+h2{font-size:32px;letter-spacing:-.03em;line-height:1.1;margin:56px 0 14px;text-wrap:balance}
+h3{font-size:20px;letter-spacing:-.02em;margin:32px 0 8px}
+p,li{max-width:70ch}
+.lede p{font-size:19px;color:var(--ink)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.toc a{font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--line-strong);border-radius:999px;padding:6px 12px}
+section{scroll-margin-top:80px}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.9em;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+blockquote{margin:14px 0;padding:14px 20px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--ember);border-radius:10px}
+blockquote p{margin:6px 0}
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:20px}
+.lg{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.lgbox{height:130px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--bg);padding:24px}
+.lgbox svg{max-height:70px;max-width:100%;width:auto;height:auto}
+.lgbox.small svg{max-height:64px}
+.lgbox.ink{background:var(--ink)}
+.lg p{font-size:14px;color:var(--muted);margin:12px 0}
+.dl{font-size:13px;padding:8px 14px}
+.sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:18px}
+.sw{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.sw .chip{flex:none;width:56px;height:56px;border-radius:12px;border:1px solid var(--line)}
+.sw p{font-size:13px;color:var(--muted);margin:4px 0 0}
+.tys{margin-top:18px;border-top:1px solid var(--line)}
+.ty{display:grid;grid-template-columns:240px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--line);align-items:center}
+.tymeta span{display:block;font-size:13px;color:var(--muted)}
+.tymeta p{font-size:13px;color:var(--muted);margin:6px 0 0}
+.tysample{min-width:0;overflow-wrap:anywhere}
+.shapewrap{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:32px;align-items:start}
+.shapeimg svg{width:100%;height:auto}
+.cap{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center}
+.foot{max-width:1080px;margin:0 auto;padding:24px max(20px,env(safe-area-inset-left,0px)) 48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+@media (max-width:720px){.ty,.shapewrap{grid-template-columns:minmax(0,1fr)}.ty{gap:8px}h2{font-size:26px}.tysample{font-size:min(var(--fs,100%),11vw)}}
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><a class="brand" href="/"><b>Spark</b> Traits</a><nav class="tabs" id="tabs" hidden><a href="index.html" id="tGuide">Brand guide</a><a href="voice.html" id="tVoice">Brand voice</a></nav></div></div>
+<main>
+<div class="gate" id="gate">
+<p class="eye">Private</p>
+<h1>Brand voice</h1>
+<p>This page is for the Spark Traits team. Enter the passcode to open it.</p>
+<form id="gf"><label for="pw" style="position:absolute;left:-9999px">Passcode</label><input id="pw" type="password" autocomplete="current-password" placeholder="Passcode" required><button type="submit">Open</button></form>
+<div class="err" id="gerr" role="alert"></div>
+</div>
+<div id="content" hidden><!--PLAIN--></div>
+</main>
+<div class="foot" id="foot" hidden>Private to Spark Traits. Don't share this link or the passcode outside the team.</div>
+<script>
+const DATA={"s": "cSg+H13XOd38CVv+kjZ7VQ==", "i": "tJVddAPTVlrG3AJJ", "c": "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", "n": 250000};
+const $=id=>document.getElementById(id);
+const here=location.pathname.endsWith("voice.html")?"tVoice":"tGuide";
+function b64(s){return Uint8Array.from(atob(s),c=>c.charCodeAt(0));}
+async function open(pass){
+  const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(DATA.s),iterations:DATA.n,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);
+  const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(DATA.i)},key,b64(DATA.c));
+  const ds=new Blob([pt]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+  return await new Response(ds).text();
+}
+function show(){
+  $("gate").hidden=true; $("content").hidden=false; $("tabs").hidden=false; $("foot").hidden=false; $(here).classList.add("on");
+  { document.querySelectorAll(".dl").forEach(b=>b.addEventListener("click",()=>{ const n=b.dataset.name; const svg=b.closest(".lg").querySelector("svg"); const blob=new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+svg.outerHTML],{type:"image/svg+xml"}); const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=n; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500); })); }
+  if(location.hash){ const t=document.querySelector(location.hash); if(t) t.scrollIntoView(); }
+}
+async function tryPass(p,quiet){
+  try{ $("content").innerHTML=await open(p); try{sessionStorage.setItem("st_brand",p);}catch(e){} show(); return true; }
+  catch(e){ if(!quiet){ $("gerr").textContent="That passcode didn't work. Check it and try again."; $("pw").select(); } return false; }
+}
+if(!DATA){ show(); }
+else {
+  $("gf").addEventListener("submit",e=>{e.preventDefault(); $("gerr").textContent="Opening..."; tryPass($("pw").value,false);});
+  let saved=null; try{saved=sessionStorage.getItem("st_brand");}catch(e){}
+  if(saved) tryPass(saved,true); else $("pw").focus();
+}
+</script>
+</body>
+</html>
