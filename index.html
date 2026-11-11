@@ -304,6 +304,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <input class="field" id="lastIn" autocomplete="family-name" placeholder="Last name" required maxlength="60">
 <p class="err wide" id="sErr" role="alert"></p>
 <div class="go wide"><button class="btn accent" type="submit">Begin</button></div>
+<p class="fine wide" id="teamNote" hidden></p>
 </form>
 <p class="resume" id="resume" hidden>You have a test in progress. <button type="button" id="resumeBtn">Pick up where you left off</button></p>
 <p class="trust"><span>No account needed</span><span>Free snapshot in 12 minutes</span><span>Private by default</span></p>
@@ -421,7 +422,7 @@ th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;t
 <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="gWebsite">Website</label><input id="gWebsite" tabindex="-1" autocomplete="off"></div>
 <p class="err" id="gErr" role="alert"></p>
 <button class="btn accent" type="submit">Unlock my full report</button>
-<p class="fine">We'll use your email and phone to follow up about your results. No spam, and you can opt out at any time. <a href="/privacy.html">Privacy</a></p>
+<p class="fine">We'll use your email and phone to follow up about your results. By adding your number, you agree we may call or text you about them. Message and data rates may apply. Reply STOP to opt out of texts, and unsubscribe from email at any time. <a href="/privacy.html">Privacy</a></p>
 </form>
 </div>
 </div>
@@ -740,14 +741,16 @@ const answered=S.idx; [...$("chapters").querySelectorAll("i")].forEach((el,i)=>{
 const f=Math.max(0,Math.min(1,(answered-i*15)/15)); el.style.transform=`scaleX(${f})`; });
 }
 if(S.answers.some(a=>a) && !S.done){$("resume").hidden=false;}
+const TEAM=(new URLSearchParams(location.search).get("team")||"").replace(/[^\w .&'-]/g,"").trim().slice(0,60);
 if(S.name) $("nameIn").value=S.name;
 if(S.last) $("lastIn").value=S.last;
+if(TEAM){ $("teamNote").hidden=false; $("teamNote").textContent=`You're taking this with ${TEAM}. Your profile will be part of your team's map for the session.`; }
 $("startForm").addEventListener("submit",e=>{e.preventDefault();
 const first=$("nameIn").value.trim(), last=$("lastIn").value.trim();
 if(!first){$("sErr").textContent="Add your first name to begin."; $("nameIn").focus(); return;}
 if(!last){$("sErr").textContent="Add your last name to begin."; $("lastIn").focus(); return;}
 $("sErr").textContent="";
-S={name:first, last, answers:Array(ITEMS.length).fill(0), idx:0, done:false, unlocked:false, lead:null}; save();
+S={name:first, last, team:TEAM||S.team||"", answers:Array(ITEMS.length).fill(0), idx:0, done:false, unlocked:false, lead:null}; save();
 startQuiz();});
 $("resumeBtn").addEventListener("click",()=>{ if(!S.name&&$("nameIn").value.trim()) S.name=$("nameIn").value.trim(); startQuiz();});
 $("scale").innerHTML=LABELS.map((l,i)=>`<button type="button" class="opt" role="radio" aria-checked="false" data-v="${i+1}"><span class="dot"></span><span>${l}</span><kbd>${i+1}</kbd></button>`).join("");
@@ -849,7 +852,7 @@ function leadRecord(extra){
 const sc=score(S.answers), dr=rankDrivers(sc.d), key=archetype(sc.t);
 const low=[...ORDER].sort((a,b)=>sc.t[a]-sc.t[b])[0];
 return Object.assign({
-firstname:S.lead?.name||S.name||"", lastname:S.last||"", email:S.lead?.email||"", phone:S.lead?.phone||"", jobtitle:S.lead?.role||"", spark_debrief_requested:S.lead?.consult?"true":"false",
+firstname:S.lead?.name||S.name||"", lastname:S.last||"", spark_team:S.team||"", email:S.lead?.email||"", phone:S.lead?.phone||"", jobtitle:S.lead?.role||"", spark_debrief_requested:S.lead?.consult?"true":"false",
 spark_profile:"The "+ARCH[key][0], spark_openness:sc.t.O, spark_conscientiousness:sc.t.C, spark_extraversion:sc.t.E, spark_agreeableness:sc.t.A, spark_steadiness:sc.t.S,
 spark_top_driver:DRIVERS[dr[0]].name, spark_second_driver:DRIVERS[dr[1]].name, spark_growth_edge:TRAITS[low].name
 }, extra||{});
@@ -859,11 +862,11 @@ async function notify(subject,fields){
 try{ const r=await fetch(NOTIFY,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(Object.assign({_subject:subject,_template:"table",_captcha:"false"},fields,{Page:location.href,Sent:new Date().toLocaleString()})),keepalive:true}); return r.ok; }
 catch(e){ return false; }
 }
-const LBL={firstname:"First name",lastname:"Last name",email:"Email",phone:"Phone",jobtitle:"Role",spark_debrief_requested:"Wants a debrief",spark_profile:"Profile",spark_openness:"Openness",spark_conscientiousness:"Conscientiousness",spark_extraversion:"Extraversion",spark_agreeableness:"Agreeableness",spark_steadiness:"Steadiness",spark_top_driver:"Top driver",spark_second_driver:"Second driver",spark_growth_edge:"Growth edge"};
+const LBL={firstname:"First name",lastname:"Last name",email:"Email",phone:"Phone",jobtitle:"Role",spark_team:"Team",spark_debrief_requested:"Wants a debrief",spark_profile:"Profile",spark_openness:"Openness",spark_conscientiousness:"Conscientiousness",spark_extraversion:"Extraversion",spark_agreeableness:"Agreeableness",spark_steadiness:"Steadiness",spark_top_driver:"Top driver",spark_second_driver:"Second driver",spark_growth_edge:"Growth edge"};
 async function submitLead(rec){
 if($("gWebsite")&&$("gWebsite").value) return true; // honeypot
 const f={}; Object.entries(rec).forEach(([k,v])=>f[LBL[k]||k]=String(v));
-notify(`Spark Traits lead: ${rec.firstname} ${rec.lastname||""}${rec.spark_debrief_requested==="true"?" (wants a debrief)":""}`.replace(/\s+/g," "),f);
+notify(`Spark Traits lead: ${rec.firstname} ${rec.lastname||""}${rec.spark_team?" ("+rec.spark_team+")":""}${rec.spark_debrief_requested==="true"?" (wants a debrief)":""}`.replace(/\s+/g," "),f);
 if(HS_PORTAL.startsWith("__")) return false;
 const hutk=(document.cookie.match(/(?:^|; )hubspotutk=([^;]+)/)||[])[1];
 const body={fields:Object.entries(rec).map(([name,value])=>({objectTypeId:"0-1",name,value:String(value)})),
